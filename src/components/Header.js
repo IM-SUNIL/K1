@@ -36,7 +36,7 @@ export default function Header() {
             </svg>
           </Link>
         </div>
-        <button type="button" className="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+        <button type="button" className="nav-toggle" aria-expanded={isOpen} aria-controls="nav-menu" aria-label="Open menu" onClick={toggleMenu}>
           <span></span>
           <span></span>
           <span></span>
