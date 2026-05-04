@@ -53,7 +53,7 @@ export default function Contact() {
           <h2 className="contact-card-title">Visit us in Katra</h2>
           <iframe
             title="Katra Travels Location"
-            src="https://maps.google.com/maps?q=KATRA+TRAVELS,+Katra,+Jammu+and+Kashmir&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=32.990127,74.927788&z=17&output=embed"
             width="100%"
             height="220"
             style={{ border: 0, borderRadius: '8px', marginTop: '1rem' }}

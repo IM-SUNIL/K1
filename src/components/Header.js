@@ -24,8 +24,20 @@ export default function Header() {
         </div>
       </div>
       <div className="nav-inner">
-        <Link onClick={() => setIsOpen(false)} href="/" className="logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', height: '100%' }}>
-          <img src="/images/logo-full.png" alt="Katra Travels" style={{ height: '40px', width: 'auto', objectFit: 'contain', transform: 'scale(1.25)', transformOrigin: 'left center', mixBlendMode: 'multiply' }} />
+        <Link onClick={() => setIsOpen(false)} href="/" className="logo" aria-label="Katra Travels Home" style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <svg height="44" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: 'auto', display: 'block' }}>
+            <title>Katra Travels Logo</title>
+            <defs>
+              <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#0f172a"/>
+                <stop offset="100%" stopColor="#10b981"/>
+              </linearGradient>
+            </defs>
+            <text x="0" y="30" style={{ font: "800 32px 'Inter', sans-serif", letterSpacing: "-0.04em", fill: "#0f172a" }}>KATR<tspan fill="url(#brand-grad)">A</tspan></text>
+            <text x="120" y="30" style={{ font: "300 15px 'Inter', sans-serif", letterSpacing: "0.45em", fill: "#64748b", textTransform: "uppercase" }}>Travels</text>
+            <path d="M88 10L96 4L104 10" stroke="url(#brand-grad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M92 14L96 11L100 14" stroke="url(#brand-grad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }} />
+          </svg>
         </Link>
         <div className="nav-quick" aria-label="Quick contact">
           <Link onClick={() => setIsOpen(false)} className="nav-icon-btn" href="tel:9906130577" aria-label="Call Us">

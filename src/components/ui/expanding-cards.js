@@ -86,44 +86,44 @@ export const ExpandingCards = React.forwardRef(({ className, items, defaultActiv
             tabIndex={0}
             data-active={isActive}
           >
-            {/* Background Image Container */}
+            {/* Background Image Container - Restored Visibility */}
             <div className="absolute inset-0 z-0 h-full w-full">
               <img
                 src={item.imgSrc}
                 alt={item.title}
                 className={cn(
                   "block w-full object-cover transition-all duration-700 ease-in-out",
-                  isActive ? "h-full scale-105 opacity-100" : "h-full scale-110 opacity-70"
+                  isActive ? "h-full scale-105 opacity-100" : "h-full scale-110 opacity-100" // Always 100% opacity for images
                 )}
                 style={{ height: '100%', filter: 'grayscale(0%)' }} 
               />
             </div>
             
-            {/* Gradient Overlay - Slightly stronger for inactive strips to highlight text */}
+            {/* Gradient Overlay - Lighter for inactive to show image better */}
             <div className={cn(
-              "absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/30 to-transparent transition-opacity duration-700",
-              isActive ? "opacity-100" : "opacity-70"
+              "absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-700",
+              isActive ? "opacity-100" : "opacity-60" 
             )} />
 
             {/* Content Layer */}
             <div className="absolute inset-0 z-20 p-4 md:p-6 flex flex-col h-full w-full pointer-events-none">
               
-              {/* Refined Stylish Title for Inactive Strips - Highlighted */}
+              {/* Massive Stylish Title for Inactive Strips - Smaller to avoid clipping */}
               <div className={cn(
                 "absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out",
                 isActive ? "opacity-0 scale-125" : "opacity-100 scale-100"
               )}>
                 <h3 className={cn(
                   "font-thin uppercase tracking-widest text-white select-none pointer-events-none",
-                  "md:rotate-90 md:text-[4rem] lg:text-[5rem]",
-                  "rotate-0 text-[2.5rem]"
+                  "md:rotate-90 md:text-[3.5rem] lg:text-[4rem]", // Reduced further to ensure fit
+                  "rotate-0 text-[2.2rem]" // Reduced for mobile
                 )} 
                 style={{ 
                   fontFamily: "'DM Sans', sans-serif",
                   whiteSpace: 'nowrap',
                   fontWeight: 100,
-                  opacity: 0.9, // Brighter white as requested
-                  filter: 'drop-shadow(0 0 15px rgba(0,0,0,0.8))' // Black shadow highlight
+                  opacity: 0.85, 
+                  filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.6))'
                 }}>
                   {item.title}
                 </h3>

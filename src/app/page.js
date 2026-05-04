@@ -1,8 +1,10 @@
 "use client";
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { packages } from '@/data/packages';
 import { ExpandingCards } from '@/components/ui/expanding-cards';
+import MarqueeReviews from '@/components/ui/marquee-reviews';
 import {
   Mountain,
   Snowflake,
@@ -91,29 +93,31 @@ export default function Home() {
 
   return (
     <>
-      <div><section className="hero" aria-label="Hero">
-        <div className="hero-slider">
-          {images.map((img, idx) => (
-            <div
-              key={img}
-              className={`hero-slide ${idx === currentImg ? 'is-active' : ''}`}
-              style={{ backgroundImage: `url(${getImgPath(img)})` }}
-            ></div>
-          ))}
-          <div className="hero-overlay" aria-hidden="true"></div>
-        </div>
-        <div className="hero-content">
-          <p className="hero-kicker">Kashmir · Ladakh · Himachal · Uttrakhand</p>
-          <h1>North India's Most Trusted Travel Partner</h1>
-          <p className="tagline">
-            From the spiritual heights of Vaishno Devi to the majestic peaks of Ladakh. Hand-picked stays, dependable cabs, and clear pricing.
-          </p>
-          <div className="hero-actions">
-            <Link className="btn btn-primary" href="/packages">Explore packages</Link>
-            <Link className="btn btn-ghost" href="https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20help%20planning%20a%20trip." target="_blank" rel="noopener noreferrer">Message us</Link>
+      <div>
+        <section className="hero" aria-label="Hero">
+          <div className="hero-slider">
+            {images.map((img, idx) => (
+              <div
+                key={img}
+                className={`hero-slide ${idx === currentImg ? 'is-active' : ''}`}
+                style={{ backgroundImage: `url(${getImgPath(img)})` }}
+              ></div>
+            ))}
+            <div className="hero-overlay" aria-hidden="true"></div>
           </div>
-        </div>
-      </section>
+          <div className="hero-content">
+            <p className="hero-kicker">Kashmir · Ladakh · Himachal · Uttrakhand</p>
+            <h1 className="hero-title">Experience the Magic of North India</h1>
+            <p className="hero-subtitle">North India's Most Trusted Travel Partner</p>
+            <p className="tagline">
+              From the spiritual heights of Vaishno Devi to the majestic peaks of Ladakh. Hand-picked stays, dependable cabs, and clear pricing.
+            </p>
+            <div className="hero-actions">
+              <Link className="btn btn-primary" href="/packages">Explore packages</Link>
+              <Link className="btn btn-ghost" href="https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20help%20planning%20a%20trip." target="_blank" rel="noopener noreferrer">Message us</Link>
+            </div>
+          </div>
+        </section>
 
         <div className="marquee-container" aria-hidden="true">
           <div className="marquee-content">
@@ -135,14 +139,7 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="section overflow-hidden" aria-labelledby="featured-heading">
-          <div className="section-head section-head--featured">
-            <div>
-              <p className="section-kicker" id="featured-heading">Curated for you</p>
-              <h2 className="section-title">Popular itineraries</h2>
-            </div>
-          </div>
-
+        <section className="section overflow-hidden !pb-0 pt-4 md:pt-8">
           <div className="carousel-outer">
             <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
               <ChevronLeft size={24} />
@@ -188,13 +185,109 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <div style={{ textAlign: 'center', marginTop: '0.5rem' }}>
             <Link className="link-arrow" href="/packages">View all packages →</Link>
           </div>
         </section>
 
+        {/* ——— Top Destinations (Moved Up) ——— */}
+        <section className="section bg-warm/30 !py-4 md:!py-8" aria-labelledby="top-dest-heading">
+          <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '1.5rem' }}>
+            <div className="page-intro">
+              <p className="section-kicker">Plan your next trip</p>
+              <h2 
+                className="section-title text-[1.9rem] md:text-[8rem]" 
+                id="top-dest-heading"
+                style={{ 
+                  lineHeight: '1',
+                  fontWeight: '800',
+                  letterSpacing: '-0.05em'
+                }}
+              >
+                TOP DESTINATIONS
+              </h2>
+            </div>
+          </div>
 
-        <section className="section" aria-labelledby="activities-heading">
+          <div className="flex justify-center px-0 md:px-4">
+            <ExpandingCards
+              items={[
+                {
+                  id: "ladakh",
+                  title: "Ladakh",
+                  description: "The land of high passes, surreal moonscapes and crystal clear lakes.",
+                  imgSrc: "/images/ladakh.png",
+                  icon: <Mountain size={24} />,
+                  linkHref: "/destinations",
+                },
+                {
+                  id: "kashmir",
+                  title: "Kashmir",
+                  description: "Often called 'Paradise on Earth' for its breathtaking valleys and serene lakes.",
+                  imgSrc: "/images/kashmir1.jpg",
+                  icon: <Snowflake size={24} />,
+                  linkHref: "/destinations",
+                },
+                {
+                  id: "vaishno-devi",
+                  title: "Vaishno Devi",
+                  description: "One of the most sacred Hindu pilgrimage sites nestled in the Trikuta Mountains.",
+                  imgSrc: "/images/vaishnodevi1.jpg",
+                  icon: <Landmark size={24} />,
+                  linkHref: "/destinations",
+                },
+                {
+                  id: "uttrakhand",
+                  title: "Uttrakhand",
+                  description: "The 'Land of Gods' featuring spiritual hubs, yoga centers and Himalayan vistas.",
+                  imgSrc: "/images/uttarakhand.png",
+                  icon: <Compass size={24} />,
+                  linkHref: "/destinations",
+                },
+                {
+                  id: "vrindavan",
+                  title: "Vrindavan",
+                  description: "The sacred city where Lord Krishna spent his childhood, filled with ancient temples.",
+                  imgSrc: "/images/vrindavan.png",
+                  icon: <Building2 size={24} />,
+                  linkHref: "/destinations",
+                },
+                {
+                  id: "rajasthan",
+                  title: "Rajasthan",
+                  description: "Experience the royal heritage, majestic forts, and the golden sand dunes of Thar.",
+                  imgSrc: "/images/rajasthan1.jpg",
+                  icon: <Camera size={24} />,
+                  linkHref: "/destinations",
+                },
+                {
+                  id: "himachal",
+                  title: "Himachal",
+                  description: "The land of snow-capped peaks, lush valleys and adventurous mountain trails.",
+                  imgSrc: "/images/himachal1.jpg",
+                  icon: <Tent size={24} />,
+                  linkHref: "/destinations",
+                },
+                {
+                  id: "delhi",
+                  title: "Delhi",
+                  description: "India's vibrant capital, where ancient history meets modern city life.",
+                  imgSrc: "/images/delhi1.jpg",
+                  icon: <Building size={24} />,
+                  linkHref: "/destinations",
+                },
+              ]}
+              defaultActiveIndex={0}
+            />
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <Link href="/destinations" className="btn btn-outline">Explore all destinations</Link>
+          </div>
+        </section>
+
+        {/* ——— Trending Activities (Moved Down) ——— */}
+        <section className="section !pt-2 md:!pt-4" aria-labelledby="activities-heading">
           <div className="section-head">
             <div>
               <p className="section-kicker" id="activities-heading">Unforgettable Experiences</p>
@@ -232,95 +325,6 @@ export default function Home() {
                 <h3>Candlelight Dinner</h3>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="section bg-warm/30" aria-labelledby="top-dest-heading">
-          <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '3rem' }}>
-            <div className="page-intro">
-              <p className="section-kicker">Plan your next trip</p>
-              <h2 className="section-title" id="top-dest-heading">Top Destinations</h2>
-              <p className="max-w-2xl mx-auto mt-4 text-muted">
-                Explore the most iconic landscapes and spiritual landmarks of North India.
-                Hover or click on a card to discover more.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex justify-center px-0 md:px-4">
-            <ExpandingCards
-              items={[
-                {
-                  id: "ladakh",
-                  title: "Ladakh",
-                  description: "The land of high passes, surreal moonscapes and crystal clear lakes.",
-                  imgSrc: "/images/ladakh.png",
-                  icon: <Mountain size={24} />,
-                  linkHref: "/destinations",
-                },
-                {
-                  id: "kashmir",
-                  title: "Kashmir",
-                  description: "Paradise on earth with pristine valleys, shikaras and alpine meadows.",
-                  imgSrc: "/images/kashmir2.jpg",
-                  icon: <Snowflake size={24} />,
-                  linkHref: "/destinations",
-                },
-                {
-                  id: "vaishnodevi",
-                  title: "Vaishno Devi",
-                  description: "A holy journey to the sacred shrine in the heart of Trikuta mountains.",
-                  imgSrc: "/images/vaishnodevi1.jpg",
-                  icon: <Landmark size={24} />,
-                  linkHref: "/destinations",
-                },
-                {
-                  id: "uttarakhand",
-                  title: "Uttarakhand",
-                  description: "Dev Bhoomi - the land of gods, mountains and serene river confluences.",
-                  imgSrc: "/images/uttarakhand.png",
-                  icon: <Compass size={24} />,
-                  linkHref: "/destinations",
-                },
-                {
-                  id: "vrindavan",
-                  title: "Vrindavan",
-                  description: "The spiritual heart of Braj Bhoomi, vibrating with divine energy and temples.",
-                  imgSrc: "/images/vrindavan.png",
-                  icon: <MapPin size={24} />,
-                  linkHref: "/destinations",
-                },
-                {
-                  id: "agra",
-                  title: "Agra",
-                  description: "Home to the eternal Taj Mahal and the rich heritage of the Mughal empire.",
-                  imgSrc: "/images/tajmahal.png",
-                  icon: <Building2 size={24} />,
-                  linkHref: "/destinations",
-                },
-                {
-                  id: "himachal",
-                  title: "Himachal",
-                  description: "The land of snow-capped peaks, lush valleys and adventurous mountain trails.",
-                  imgSrc: "/images/himachal1.jpg",
-                  icon: <Tent size={24} />,
-                  linkHref: "/destinations",
-                },
-                {
-                  id: "delhi",
-                  title: "Delhi",
-                  description: "India's vibrant capital, where ancient history meets modern city life.",
-                  imgSrc: "/images/delhi1.jpg",
-                  icon: <Building size={24} />,
-                  linkHref: "/destinations",
-                },
-              ]}
-              defaultActiveIndex={0}
-            />
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <Link href="/destinations" className="btn btn-outline">Explore all destinations</Link>
           </div>
         </section>
 
@@ -399,23 +403,7 @@ export default function Home() {
               <h2 className="section-title">Word on the trail</h2>
             </div>
           </div>
-          <div className="testimonials">
-            <article className="testimonial-card">
-              <p className="name">Sham Sunder Sanmotra</p>
-              <p className="review">Our Kashmir leg was seamless — cabs on time and hotels exactly as promised.</p>
-              <p className="stars" aria-label="5 out of 5 stars">★★★★★</p>
-            </article>
-            <article className="testimonial-card">
-              <p className="name">Raj Kumar</p>
-              <p className="review">Straight answers on WhatsApp and fair pricing. Felt looked after.</p>
-              <p className="stars" aria-label="5 out of 5 stars">★★★★★</p>
-            </article>
-            <article className="testimonial-card">
-              <p className="name">Anil Gupta</p>
-              <p className="review">Vaishno Devi darshan logistics were sorted without stress — huge relief.</p>
-              <p className="stars" aria-label="5 out of 5 stars">★★★★★</p>
-            </article>
-          </div>
+          <MarqueeReviews />
         </section>
 
         <section className="faq-section" aria-labelledby="faq-heading">
@@ -475,7 +463,7 @@ export default function Home() {
               <div className="map-frame">
                 <iframe
                   title="Katra Travels Location"
-                  src="https://maps.google.com/maps?q=KATRA+TRAVELS,+Katra,+Jammu+and+Kashmir&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                  src="https://maps.google.com/maps?q=32.990127,74.927788&z=17&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -485,7 +473,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section></div>
+        </section>
+      </div>
     </>
   );
 }

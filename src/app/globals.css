@@ -1,4 +1,4 @@
-/* Katra Travels â€” editorial travel aesthetic (mobile-first)
+/* Katra Travels ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â editorial travel aesthetic (mobile-first)
    Inspired by modern DMO & tour-operator patterns: immersive photography,
    restrained palette, strong typography, clear hierarchy, no sticky dock. */
 
@@ -68,7 +68,7 @@ h3 {
 }
 
 p {
-  margin: 0 0 1rem;
+  margin: 0;
 }
 
 ul {
@@ -76,7 +76,7 @@ ul {
   padding-left: 1.15rem;
 }
 
-/* â€”â€”â€” Header â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Header ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .site-header {
   position: sticky;
   top: 0;
@@ -330,7 +330,7 @@ ul {
   }
 }
 
-/* ——— Buttons ——— */
+/* Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ Buttons Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -348,49 +348,41 @@ ul {
   text-align: center;
 }
 
-/* ——— Hero Branding ——— */
-.hero-branding {
-  display: flex;
-  flex-direction: column;
-  line-height: 0.85;
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
+/* â€”â€”â€” Hero Content â€”â€”â€” */
+.hero-content {
+  position: relative;
+  z-index: 5;
+  max-width: 800px;
+  color: white;
+  text-align: center;
+  padding: 0 1.5rem;
+  margin: 0 auto;
 }
 
-.brand-word {
+.hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(4rem, 12vw, 10rem);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.7));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-}
-
-.brand-word:nth-child(2) {
-  margin-left: 2rem;
-  opacity: 0.9;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
-  .hero-branding {
-    line-height: 0.95;
-  }
-  .brand-word {
-    font-size: 4.5rem;
-  }
-  .brand-word:nth-child(2) {
-    margin-left: 0;
+  .hero-title {
+    font-size: 2.5rem;
   }
   .hero-subtitle {
     font-size: 0.9rem;
@@ -461,16 +453,17 @@ ul {
   outline: none;
 }
 
-/* â€”â€”â€” Hero â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Hero ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .hero {
   position: relative;
   min-height: 85vh;
   min-height: 85dvh;
   display: flex;
-  align-items: flex-end;
-  padding: 2.5rem 1.25rem 3.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.25rem 3.5rem;
   color: #fff;
-  text-align: left;
+  text-align: center;
 }
 
 .hero-slider {
@@ -529,12 +522,10 @@ ul {
   margin-bottom: 0.75rem;
 }
 
-.hero h1 {
-  font-size: clamp(2rem, 6.5vw, 3.35rem);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.25);
-  max-width: 12ch;
+.hero h1, .hero-title {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 @media (min-width: 720px) and (max-width: 899px) {
@@ -610,11 +601,17 @@ ul {
   }
 }
 
-/* â€”â€”â€” Sections â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Sections ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .section {
-  padding: 3rem 1.5rem;
+  padding: 1.75rem 1.25rem;
   max-width: 1440px;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
 }
 
 .section-head {
@@ -673,7 +670,7 @@ ul {
   }
 }
 
-/* â€”â€”â€” Horizontal package cards â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Horizontal package cards ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .scroll-row-wrap {
   margin: 0 -1.25rem;
   padding: 0 1.25rem;
@@ -806,7 +803,7 @@ ul {
   outline: none;
 }
 
-/* â€”â€”â€” Highlights (photo-led) â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Highlights (photo-led) ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .highlights {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -872,7 +869,7 @@ ul {
   }
 }
 
-/* â€”â€”â€” Testimonials â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Testimonials ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .testimonials {
   display: grid;
   gap: 1rem;
@@ -914,7 +911,7 @@ ul {
   }
 }
 
-/* â€”â€”â€” CTA band â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â CTA band ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .cta-band {
   background: var(--ink);
   color: #fff;
@@ -958,7 +955,7 @@ ul {
   outline-color: #fff;
 }
 
-/* â€”â€”â€” Packages grid â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Packages grid ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .packages-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1039,7 +1036,6 @@ ul {
 
 .page-intro {
   text-align: center;
-  margin-bottom: 3.5rem;
   padding: 0 1.25rem;
 }
 
@@ -1058,7 +1054,7 @@ ul {
   line-height: 1.6;
 }
 
-/* â€”â€”â€” Gallery â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Gallery ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .gallery-filters {
   display: flex;
   flex-wrap: wrap;
@@ -1211,7 +1207,7 @@ ul {
   outline: none;
 }
 
-/* â€”â€”â€” Contact page â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Contact page ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .contact-page {
   padding-bottom: 0;
 }
@@ -1492,7 +1488,7 @@ ul {
   outline-offset: 2px;
 }
 
-/* â€”â€”â€” About â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â About ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .about-wrap {
   max-width: 680px;
   margin: 0 auto;
@@ -1526,7 +1522,7 @@ ul {
   color: var(--ink);
 }
 
-/* â€”â€”â€” Footer â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Footer ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .site-footer {
   background: var(--ink);
   color: rgba(255, 255, 255, 0.75);
@@ -2079,7 +2075,7 @@ details[open] .faq-summary::after {
   }
 }
 
-/* â€”â€”â€” Activities â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Activities ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .activity-card {
   flex: 0 0 220px;
   text-align: left;
@@ -2125,7 +2121,7 @@ details[open] .faq-summary::after {
   color: var(--text-main);
 }
 
-/* â€”â€”â€” Destinations Page â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Destinations Page ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .destinations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -2233,7 +2229,7 @@ details[open] .faq-summary::after {
   letter-spacing: 0.02em;
 }
 
-/* â€”â€”â€” Timeline & Details â€”â€”â€” */
+/* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Timeline & Details ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .timeline {
   position: relative;
   padding: 1rem 0;
@@ -2370,7 +2366,7 @@ details[open] .faq-summary::after {
 }
 
 /* Page headers simplified */
-/* ——— Package Carousel ——— */
+/* Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ Package Carousel Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ */
 .carousel-controls {
   display: flex;
   gap: 0.75rem;
@@ -2450,7 +2446,7 @@ details[open] .faq-summary::after {
   color: var(--accent);
 }
 
-/* ——— Side Carousel Arrows ——— */
+/* Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ Side Carousel Arrows Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ */
 .carousel-outer {
   position: relative;
   margin: 0 -1.5rem;
@@ -2504,4 +2500,12 @@ details[open] .faq-summary::after {
   .carousel-side-btn.right {
     right: 1rem;
   }
+}
+
+/* ——— Marquee Utilities ——— */
+.animate-marquee {
+  animation: scrollMarquee var(--duration) linear infinite;
+}
+.animate-marquee-reverse {
+  animation: scrollMarquee var(--duration) linear infinite reverse;
 }
