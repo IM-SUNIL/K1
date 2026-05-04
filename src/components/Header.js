@@ -19,6 +19,8 @@ export default function Header() {
         <div className="top-banner-content">
           <p>⚠️ Note: We don't provide helicopter, battery car or any other Mata Vaishno Devi Shrine Board booking.</p>
           <p>⚠️ Note: We don't provide helicopter, battery car or any other Mata Vaishno Devi Shrine Board booking.</p>
+          <p>⚠️ Note: We don't provide helicopter, battery car or any other Mata Vaishno Devi Shrine Board booking.</p>
+          <p>⚠️ Note: We don't provide helicopter, battery car or any other Mata Vaishno Devi Shrine Board booking.</p>
         </div>
       </div>
       <div className="nav-inner">

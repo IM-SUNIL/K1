@@ -1,11 +1,43 @@
+"use client";
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function Home() {
+  const [currentImg, setCurrentImg] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    const interval = setInterval(() => {
+      setCurrentImg((prev) => (prev + 1) % images.length);
+    }, 6000);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      clearInterval(interval);
+    };
+  }, []);
+
+  const getImgPath = (img) => {
+    return isMobile ? `/images/mobile/${img}` : `/images/laptop/${img}`;
+  };
+
   return (
     <>
 <div><section className="hero" aria-label="Hero">
-      <div className="hero-bg">
-        <img src="images/kashmir1.jpg" alt="Kashmir scenery — mountains, lakes and alpine valleys" width="1200" height="800" fetchPriority="high" />
+      <div className="hero-slider">
+        {images.map((img, idx) => (
+          <div 
+            key={img} 
+            className={`hero-slide ${idx === currentImg ? 'is-active' : ''}`}
+            style={{ backgroundImage: `url(${getImgPath(img)})` }}
+          ></div>
+        ))}
         <div className="hero-overlay" aria-hidden="true"></div>
       </div>
       <div className="hero-content">
@@ -91,7 +123,50 @@ export default function Home() {
           </article>
         </div>
       </div>
-    </section><section className="section" aria-labelledby="highlights-heading">
+    </section>
+
+    <section className="section" aria-labelledby="activities-heading">
+      <div className="section-head">
+        <div>
+          <p className="section-kicker" id="activities-heading">Unforgettable Experiences</p>
+          <h2 className="section-title">Trending Activities ⚡</h2>
+        </div>
+      </div>
+      <div className="scroll-row-wrap">
+        <div className="scroll-row">
+          <div className="activity-card">
+            <div className="activity-image-wrap">
+              <img src="images/activities/biking.png" alt="Biking" width="280" height="280" loading="lazy" />
+              <span className="activity-badge">6 Trips</span>
+            </div>
+            <h3>Biking</h3>
+          </div>
+          <div className="activity-card">
+            <div className="activity-image-wrap">
+              <img src="images/activities/boating.png" alt="Boating" width="280" height="280" loading="lazy" />
+              <span className="activity-badge">3 Trips</span>
+            </div>
+            <h3>Boating</h3>
+          </div>
+          <div className="activity-card">
+            <div className="activity-image-wrap">
+              <img src="images/activities/camping.png" alt="Camping" width="280" height="280" loading="lazy" />
+              <span className="activity-badge">10 Trips</span>
+            </div>
+            <h3>Camping</h3>
+          </div>
+          <div className="activity-card">
+            <div className="activity-image-wrap">
+              <img src="images/activities/dinner.png" alt="Candlelight Dinner" width="280" height="280" loading="lazy" />
+              <span className="activity-badge">4 Trips</span>
+            </div>
+            <h3>Candlelight Dinner</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section className="section" aria-labelledby="highlights-heading">
       <div className="section-head">
         <div>
           <p className="section-kicker" id="highlights-heading">Why travellers choose us</p>

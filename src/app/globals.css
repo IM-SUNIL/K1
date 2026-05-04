@@ -418,27 +418,37 @@ ul {
   text-align: left;
 }
 
-.hero-bg {
+.hero-slider {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.8s ease-in-out;
+  transform: scale(1.05);
+}
+
+.hero-slide.is-active {
+  opacity: 1;
+  animation: kenBurns 15s ease-out forwards;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(20, 26, 20, 0.75) 0%,
-    rgba(20, 26, 20, 0.35) 45%,
-    rgba(20, 26, 20, 0.5) 100%
-  );
+  background: radial-gradient(circle at center, rgba(17, 52, 42, 0.2) 0%, rgba(17, 52, 42, 0.7) 100%);
   z-index: 1;
 }
 
@@ -480,32 +490,40 @@ ul {
 /* Laptop / desktop: centered hero copy */
 @media (min-width: 900px) {
   .hero {
+    min-height: 92vh;
     align-items: center;
     justify-content: center;
-    padding: 3.5rem 2rem 4.5rem;
+    padding: 5rem 2rem;
     text-align: center;
   }
 
   .hero-content {
     margin-left: auto;
     margin-right: auto;
-    max-width: 48rem;
+    max-width: 58rem;
   }
 
   .hero h1 {
-    max-width: 22ch;
+    font-size: 4.5rem;
+    max-width: 20ch;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
   }
 
   .hero .tagline {
-    max-width: 40rem;
+    font-size: 1.45rem;
+    max-width: 55ch;
+    margin-bottom: 2.5rem;
     margin-left: auto;
     margin-right: auto;
   }
 
   .hero-actions {
+    display: flex;
     justify-content: center;
+    gap: 1.5rem;
   }
 }
 
@@ -612,6 +630,18 @@ ul {
   scrollbar-width: thin;
 }
 
+.scroll-row--itineraries {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-x: visible;
+}
+
+.scroll-row--itineraries .package-card {
+  flex: none;
+  width: 100%;
+}
+
 /* Laptop: show all 4 itinerary cards in a centered grid */
 @media (min-width: 1024px) {
   .scroll-row-wrap--itineraries {
@@ -623,6 +653,7 @@ ul {
   .scroll-row--itineraries {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    flex-direction: row;
     gap: 1.25rem;
     overflow-x: visible;
     scroll-snap-type: none;
@@ -632,6 +663,7 @@ ul {
   .scroll-row--itineraries .package-card {
     flex: initial;
     min-width: 0;
+    width: auto;
     scroll-snap-align: unset;
   }
 }
@@ -1773,13 +1805,21 @@ ul {
 
 /* STATS SECTION */
 .stats-section {
-  padding: 5rem 1.5rem;
-  background: #11342a;
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+  display: none;
 }
+
+@media (min-width: 768px) {
+  .stats-section {
+    display: block;
+    padding: 5rem 1.5rem;
+    background: #11342a;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+}
+
 .stats-section::before {
   content: "";
   position: absolute;
@@ -1833,10 +1873,16 @@ ul {
 
 /* FAQ SECTION */
 .faq-section {
-  padding: 6rem 1.5rem;
+  padding: 4rem 1.5rem;
   max-width: 800px;
   margin: 0 auto;
 }
+@media (max-width: 768px) {
+  .faq-section {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
 .faq-item {
   margin-bottom: 1rem;
   border: 1px solid var(--border);
@@ -1886,8 +1932,13 @@ details[open] .faq-summary::after {
 
 /* HOME CONTACT SECTION */
 .home-contact-section {
-  padding: 6rem 1.5rem;
+  padding: 4rem 1.5rem;
   background: var(--bg-surface);
+}
+@media (max-width: 768px) {
+  .home-contact-section {
+    padding: 2.5rem 1.5rem;
+  }
 }
 
 .home-contact-inner {
@@ -1951,9 +2002,16 @@ details[open] .faq-summary::after {
 }
 
 .home-contact-map {
-  height: 100%;
-  min-height: 450px;
-  position: relative;
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .home-contact-map {
+    display: block;
+    height: 100%;
+    min-height: 450px;
+    position: relative;
+  }
 }
 
 .map-frame {
@@ -1973,7 +2031,7 @@ details[open] .faq-summary::after {
 .top-banner {
   background: #11342a;
   color: #fff;
-  padding: 0.5rem 0;
+  padding: 0.35rem 0;
   overflow: hidden;
   white-space: nowrap;
   display: flex;
@@ -1981,10 +2039,18 @@ details[open] .faq-summary::after {
   border-bottom: 2px solid var(--coral);
 }
 
+@media (max-width: 768px) {
+  .top-banner {
+    padding: 0.2rem 0;
+  }
+  .top-banner-content p {
+    font-size: 0.72rem !important;
+  }
+}
+
 .top-banner-content {
   display: flex;
-  animation: scrollBanner 25s linear infinite;
-  padding-left: 100%;
+  animation: scrollBanner 30s linear infinite;
 }
 
 .top-banner-content p {
@@ -1992,12 +2058,59 @@ details[open] .faq-summary::after {
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-  padding-right: 4rem;
+  padding-right: 6rem;
   text-transform: uppercase;
   color: #fff;
+  white-space: nowrap;
 }
 
 @keyframes scrollBanner {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ——— Activities ——— */
+.activity-card {
+  flex: 0 0 220px;
+  text-align: left;
+}
+
+.activity-image-wrap {
+  position: relative;
+  aspect-ratio: 1/1;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+.activity-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.activity-card:hover .activity-image-wrap img {
+  transform: scale(1.08);
+}
+
+.activity-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  background: #e63946;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.activity-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-main);
 }
