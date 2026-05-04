@@ -1,11 +1,13 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const toggleMenu = () => setIsOpen(!isOpen);
-  
+
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
@@ -13,19 +15,18 @@ export default function Header() {
 
   return (
     <header className="site-header">
+      <div className="top-banner">
+        <div className="top-banner-content">
+          <p>⚠️ Note: We don't provide helicopter, battery car or any other Mata Vaishno Devi Shrine Board booking.</p>
+          <p>⚠️ Note: We don't provide helicopter, battery car or any other Mata Vaishno Devi Shrine Board booking.</p>
+        </div>
+      </div>
       <div className="nav-inner">
-        <Link onClick={() => setIsOpen(false)} href="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-            <path d="M7.5 5L1 18H14L7.5 5Z" fill="var(--accent)" />
-            <path d="M16 8L10 18H22L16 8Z" fill="var(--coral)" fillOpacity="0.9" />
-            <path d="M11 12L8.5 16H13.5L11 12Z" fill="#fff" fillOpacity="0.8" />
-          </svg>
-          <span style={{ fontSize: '1.35rem', fontWeight: '800', fontFamily: 'var(--font-display)', background: 'linear-gradient(45deg, var(--accent) 0%, var(--coral) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', letterSpacing: '-0.02em' }}>
-            Katra Travels
-          </span>
+        <Link onClick={() => setIsOpen(false)} href="/" className="logo" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', height: '100%' }}>
+          <img src="/images/logo-full.png" alt="Katra Travels" style={{ height: '40px', width: 'auto', objectFit: 'contain', transform: 'scale(1.25)', transformOrigin: 'left center', mixBlendMode: 'multiply' }} />
         </Link>
         <div className="nav-quick" aria-label="Quick contact">
-          <Link onClick={() => setIsOpen(false)} className="nav-icon-btn" href="tel:9906130577" aria-label="Call 9906130577">
+          <Link onClick={() => setIsOpen(false)} className="nav-icon-btn" href="tel:9906130577" aria-label="Call Us">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path>
             </svg>
@@ -41,23 +42,23 @@ export default function Header() {
           <span></span>
           <span></span>
         </button>
-        <div className={`nav-panel ${isOpen ? "is-open" : ""}`} onClick={(e) => {if(e.target.classList.contains("nav-panel")) setIsOpen(false)}} id="nav-menu">
+        <div className={`nav-panel ${isOpen ? "is-open" : ""}`} onClick={(e) => { if (e.target.classList.contains("nav-panel")) setIsOpen(false) }} id="nav-menu">
           <div className="nav-sheet">
             <ul className="nav-links">
-              <li><Link onClick={() => setIsOpen(false)} href="/" aria-current="page">Home</Link></li>
-              <li><Link onClick={() => setIsOpen(false)} href="/packages">Packages</Link></li>
-              <li><Link onClick={() => setIsOpen(false)} href="/gallery">Gallery</Link></li>
-              <li><Link onClick={() => setIsOpen(false)} href="/contact">Contact</Link></li>
-              <li><Link onClick={() => setIsOpen(false)} href="/about">About</Link></li>
+              <li><Link onClick={() => setIsOpen(false)} href="/" aria-current={pathname === '/' ? "page" : undefined}>Home</Link></li>
+              <li><Link onClick={() => setIsOpen(false)} href="/packages" aria-current={pathname.startsWith('/packages') ? "page" : undefined}>Packages</Link></li>
+              <li><Link onClick={() => setIsOpen(false)} href="/gallery" aria-current={pathname === '/gallery' ? "page" : undefined}>Gallery</Link></li>
+              <li><Link onClick={() => setIsOpen(false)} href="/contact" aria-current={pathname === '/contact' ? "page" : undefined}>Contact</Link></li>
+              <li><Link onClick={() => setIsOpen(false)} href="/about" aria-current={pathname === '/about' ? "page" : undefined}>About</Link></li>
             </ul>
             <div className="nav-drawer-cta">
-              <Link onClick={() => setIsOpen(false)} className="btn btn-outline btn-block" href="tel:9906130577">Call 9906130577</Link>
+              <Link onClick={() => setIsOpen(false)} className="btn btn-outline btn-block" href="tel:9906130577">Call Us</Link>
               <Link onClick={() => setIsOpen(false)} className="btn btn-primary btn-block" href="https://wa.me/919906130577" target="_blank" rel="noopener noreferrer">WhatsApp us</Link>
             </div>
           </div>
         </div>
         <div className="nav-cta-desktop">
-          <Link onClick={() => setIsOpen(false)} className="link-quiet" href="tel:9906130577">9906130577</Link>
+          <Link onClick={() => setIsOpen(false)} className="btn btn-outline btn-sm" href="tel:9906130577">Call Us</Link>
           <Link onClick={() => setIsOpen(false)} className="btn btn-dark btn-sm" href="https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20plan%20a%20trip." target="_blank" rel="noopener noreferrer">Plan on WhatsApp</Link>
         </div>
       </div>

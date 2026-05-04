@@ -19,7 +19,27 @@ export default function Home() {
           <Link className="btn btn-ghost" href="https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20help%20planning%20a%20trip." target="_blank" rel="noopener noreferrer">Message us</Link>
         </div>
       </div>
-    </section><section className="section" aria-labelledby="featured-heading">
+    </section>
+
+    <div className="marquee-container" aria-hidden="true">
+      <div className="marquee-content">
+        <div className="marquee-item"><span>✦</span> Kashmir</div>
+        <div className="marquee-item"><span>✦</span> Himachal Pradesh</div>
+        <div className="marquee-item"><span>✦</span> Vaishno Devi</div>
+        <div className="marquee-item"><span>✦</span> Rajasthan</div>
+        <div className="marquee-item"><span>✦</span> Uttrakhand</div>
+        <div className="marquee-item"><span>✦</span> Amritsar</div>
+        {/* Duplicate for infinite loop */}
+        <div className="marquee-item"><span>✦</span> Kashmir</div>
+        <div className="marquee-item"><span>✦</span> Himachal Pradesh</div>
+        <div className="marquee-item"><span>✦</span> Vaishno Devi</div>
+        <div className="marquee-item"><span>✦</span> Rajasthan</div>
+        <div className="marquee-item"><span>✦</span> Uttrakhand</div>
+        <div className="marquee-item"><span>✦</span> Amritsar</div>
+      </div>
+    </div>
+
+    <section className="section" aria-labelledby="featured-heading">
       <div className="section-head section-head--featured">
         <div>
           <p className="section-kicker" id="featured-heading">Curated for you</p>
@@ -116,7 +136,30 @@ export default function Home() {
           </div>
         </article>
       </div>
-    </section><section className="section" aria-labelledby="reviews-heading">
+    </section>
+
+    <section className="stats-section" aria-label="Our Impact">
+      <div className="stats-grid">
+        <div className="stat-card">
+          <div className="stat-number">10+</div>
+          <div className="stat-label">Years Experience</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-number">5k+</div>
+          <div className="stat-label">Happy Travellers</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-number">15+</div>
+          <div className="stat-label">Destinations</div>
+        </div>
+        <div className="stat-card">
+          <div className="stat-number">24/7</div>
+          <div className="stat-label">Support</div>
+        </div>
+      </div>
+    </section>
+
+    <section className="section" aria-labelledby="reviews-heading">
       <div className="section-head">
         <div>
           <p className="section-kicker" id="reviews-heading">Guest stories</p>
@@ -140,9 +183,75 @@ export default function Home() {
           <p className="stars" aria-label="5 out of 5 stars">★★★★★</p>
         </article>
       </div>
-    </section><section className="cta-band" aria-labelledby="cta-heading">
-      <h2 id="cta-heading">Tell us where you want to go — we’ll shape the rest.</h2>
-      <Link className="btn btn-primary" href="/contact">Start planning</Link>
+    </section>
+
+    <section className="faq-section" aria-labelledby="faq-heading">
+      <div className="section-head" style={{ textAlign: 'center' }}>
+        <div>
+          <p className="section-kicker" id="faq-heading">Got Questions?</p>
+          <h2 className="section-title">Frequently Asked Questions</h2>
+        </div>
+      </div>
+      <div className="faq-list">
+        <details className="faq-item">
+          <summary className="faq-summary">How do I book a trip?</summary>
+          <div className="faq-content">Simply contact us via WhatsApp or Phone with your desired destination and dates. We will provide a fully customized itinerary and pricing.</div>
+        </details>
+        <details className="faq-item">
+          <summary className="faq-summary">Are flights included in the packages?</summary>
+          <div className="faq-content">Our standard packages cover accommodation, private transport, and sightseeing. Flights can be arranged upon special request.</div>
+        </details>
+        <details className="faq-item">
+          <summary className="faq-summary">Is Vaishno Devi Yatra support provided?</summary>
+          <div className="faq-content">Yes, we provide end-to-end support for Vaishno Devi including Katra hotel stays, helicopter bookings, and VIP Darshan assistance.</div>
+        </details>
+        <details className="faq-item">
+          <summary className="faq-summary">Do you offer 24/7 support during the trip?</summary>
+          <div className="faq-content">Absolutely. You will have a dedicated local coordinator available via WhatsApp or Call 24/7 throughout your entire journey.</div>
+        </details>
+      </div>
+    </section>
+
+    <section className="home-contact-section" aria-labelledby="home-contact-heading">
+      <div className="home-contact-inner">
+        <div className="home-contact-text">
+          <p className="section-kicker">Reach Out</p>
+          <h2 className="section-title" id="home-contact-heading">Let's start your journey</h2>
+          <p className="tagline">Whether you need a fully customized package or just a reliable cab, we're here to help 24/7.</p>
+          
+          <div className="home-contact-methods">
+            <div className="method-card">
+              <h3>Call Us</h3>
+              <a href="tel:9906130577" className="method-link">+91 99061 30577</a>
+            </div>
+            <div className="method-card">
+              <h3>WhatsApp</h3>
+              <a href="https://wa.me/919906130577" target="_blank" rel="noopener noreferrer" className="method-link">Chat with us</a>
+            </div>
+            <div className="method-card">
+              <h3>Email</h3>
+              <a href="mailto:katratravel@gmail.com" className="method-link">katratravel@gmail.com</a>
+            </div>
+            <div className="method-card">
+              <h3>Visit Us</h3>
+              <p className="method-link" style={{textDecoration: 'none', color: 'inherit'}}>Katra, J&amp;K</p>
+            </div>
+          </div>
+        </div>
+        <div className="home-contact-map">
+          <div className="map-frame">
+            <iframe
+              title="Katra Travels Location"
+              src="https://maps.google.com/maps?q=KATRA+TRAVELS,+Katra,+Jammu+and+Kashmir&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
     </section></div>
 </>
   );
