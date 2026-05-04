@@ -97,5 +97,80 @@ export const packages = {
     stay: [
       "Delhi: 3-Star Central Hotel"
     ]
+  },
+  "ladakh-adventure": {
+    id: "ladakh-adventure",
+    title: "Ladakh Adventure",
+    duration: "7 nights / 8 days",
+    image: "/images/ladakh.png",
+    overview: "Explore the land of high passes. Experience the unique culture, stunning monasteries, and high-altitude lakes of Ladakh.",
+    includes: ["Hotel", "Cab", "Breakfast & Dinner", "Inner Line Permits", "Toll & Parking"],
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Leh", description: "Arrive at Leh airport. Transfer to hotel. Rest for acclimatization." },
+      { day: "Day 2", title: "Leh Local Sightseeing", description: "Visit Shanti Stupa, Leh Palace, and Hall of Fame." },
+      { day: "Day 3", title: "Leh to Nubra Valley", description: "Drive via Khardung La. Visit Diskit Monastery and Hunder sand dunes." },
+      { day: "Day 4", title: "Nubra to Pangong Lake", description: "Drive to the stunning Pangong Lake via Shyok river road." },
+      { day: "Day 5", title: "Pangong to Leh", description: "Return to Leh via Chang La Pass." },
+      { day: "Day 6", title: "Leh - Sham Valley", description: "Visit Magnetic Hill, Sangam (confluence of Indus & Zanskar), and Alchi Monastery." },
+      { day: "Day 7", title: "Departure", description: "Transfer to Leh airport." }
+    ],
+    stay: ["Leh: 3-Star Hotel", "Nubra: Luxury Camp", "Pangong: Lakeside Camp"]
+  },
+  "uttarakhand-hills": {
+    id: "uttarakhand-hills",
+    title: "Uttarakhand Divine Hills",
+    duration: "5 nights / 6 days",
+    image: "/images/uttarakhand.png",
+    overview: "A journey through the 'Land of Gods'. Visit Rishikesh, Mussoorie, and the beautiful hills of Kumaon.",
+    includes: ["Hotel", "Cab", "Breakfast & Dinner", "Sightseeing", "Toll & Parking"],
+    itinerary: [
+      { day: "Day 1", title: "Dehradun to Mussoorie", description: "Arrive in Dehradun and drive to Mussoorie. Visit Mall Road." },
+      { day: "Day 2", title: "Mussoorie Sightseeing", description: "Visit Kempty Falls, Gun Hill, and Lal Tibba." },
+      { day: "Day 3", title: "Mussoorie to Rishikesh", description: "Drive to the Yoga Capital. Attend Ganga Aarti in the evening." },
+      { day: "Day 4", title: "Rishikesh Adventure", description: "River rafting, Laxman Jhula, and Ram Jhula exploration." },
+      { day: "Day 5", title: "Rishikesh to Haridwar", description: "Visit Mansa Devi Temple and Har Ki Pauri." },
+      { day: "Day 6", title: "Departure", description: "Drop at Dehradun/Haridwar station." }
+    ],
+    stay: ["Mussoorie: Hill View Hotel", "Rishikesh: Riverside Resort"]
+  },
+  "vrindavan-mathura-agra": {
+    id: "vrindavan-mathura-agra",
+    title: "Braj & Taj Heritage",
+    duration: "3 nights / 4 days",
+    image: "/images/tajmahal.png",
+    overview: "Visit the holy land of Lord Krishna and the world-famous Taj Mahal in Agra.",
+    includes: ["Hotel", "Cab", "Breakfast", "Sightseeing", "Guide at Taj Mahal"],
+    itinerary: [
+      { day: "Day 1", title: "Delhi to Mathura", description: "Drive to Mathura. Visit Janmabhoomi Temple and Dwarkadhish Temple." },
+      { day: "Day 2", title: "Vrindavan Exploration", description: "Visit Banke Bihari Temple, Prem Mandir, and ISKCON Temple." },
+      { day: "Day 3", title: "Mathura to Agra", description: "Drive to Agra. Visit the Taj Mahal and Agra Fort." },
+      { day: "Day 4", title: "Agra to Delhi", description: "Visit Fatehpur Sikri and return to Delhi." }
+    ],
+    stay: ["Mathura: 3-Star Hotel", "Agra: Premium Hotel"]
+  },
+  "north-india-circuit": {
+    id: "north-india-circuit",
+    title: "14-Day Northern India Circuit",
+    duration: "13 nights / 14 days",
+    image: "/images/north_india_circuit.png",
+    overview: "This epic circuit covers Jammu, Kashmir, Ladakh, and the religious shrines of Himachal Pradesh. A journey from the plains to the highest passes.",
+    includes: ["Hotel", "Cab", "Breakfast & Dinner", "Permits", "Airport Transfers"],
+    itinerary: [
+      { day: "Day 1", title: "Jammu Arrival | Shiv Khori", description: "Pick-up from Jammu. Visit Shiv Khori cave shrine. Evening travel to Katra." },
+      { day: "Day 2", title: "Vaishno Devi Darshan", description: "Full day for Mata Vaishno Devi trek. Return to Katra for rest." },
+      { day: "Day 3", title: "Katra to Srinagar", description: "Drive to Srinagar (6-7 hrs). Evening Shikara ride on Dal Lake." },
+      { day: "Day 4", title: "Srinagar | Sonamarg", description: "Visit Shankaracharya Temple. Afternoon drive to Sonamarg." },
+      { day: "Day 5", title: "Sonamarg to Leh", description: "Cross Zoji La Pass, Drass, and Kargil. Arrive in Leh and rest." },
+      { day: "Day 6", title: "Leh Sightseeing", description: "Visit Shey Palace, Thiksey Monastery, and Hemis Monastery." },
+      { day: "Day 7", title: "Leh – Nubra Valley – Leh", description: "Drive via Khardung La. Camel ride at Hunder sand dunes. Return to Leh." },
+      { day: "Day 8", title: "Leh Market & Shanti Stupa", description: "Leisure day for rest and local exploration in Leh." },
+      { day: "Day 9", title: "Leh – Pangong Lake – Leh", description: "Visit Pangong Lake via Chang La Pass. Return to Leh." },
+      { day: "Day 10", title: "Leh to Manali", description: "Cross Lachung La, Baralacha La, and Atal Tunnel. Arrive in Manali." },
+      { day: "Day 11", title: "Manali Local", description: "Visit Hidimba Temple, Vashisht Springs, and Solang Valley." },
+      { day: "Day 12", title: "Manali to Kangra", description: "Visit Brajeshwari Temple in Kangra. Evening reach Jawala Ji." },
+      { day: "Day 13", title: "Jawala Ji to Naina Devi", description: "Visit Jawala Ji, Chintpurni, and proceed to Naina Devi region." },
+      { day: "Day 14", title: "Naina Devi | Departure", description: "Visit Naina Devi Temple. Drop at Chandigarh Airport." }
+    ],
+    stay: ["Katra", "Srinagar", "Sonamarg", "Leh", "Manali", "Jawala Ji", "Naina Devi Area"]
   }
 };

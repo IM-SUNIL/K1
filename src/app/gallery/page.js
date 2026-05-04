@@ -4,10 +4,12 @@ import Link from 'next/link';
 export default function Gallery() {
   return (
     <>
-<div><div className="page-hero">
-      <h1>Gallery</h1>
-      <p>A glimpse of the landscapes we build itineraries around. Tap any image to view it full screen.</p>
-    </div><div className="gallery-filters" role="tablist" aria-label="Filter by region">
+      <div className="section">
+        <div className="page-intro">
+          <h1>Gallery</h1>
+          <p>A glimpse of the landscapes we build itineraries around. Tap any image to view it full screen.</p>
+        </div>
+<div className="gallery-filters" role="tablist" aria-label="Filter by region">
       <button type="button" className="filter-btn is-active" data-filter="all" role="tab">All</button>
       <button type="button" className="filter-btn" data-filter="kashmir" role="tab">Kashmir</button>
       <button type="button" className="filter-btn" data-filter="himachal" role="tab">Himachal</button>
@@ -37,7 +39,8 @@ export default function Gallery() {
         <img src="images/hero.jpg" alt="Dramatic Himalayan ridgelines" width="800" height="800" loading="lazy" />
         <span className="caption">Himalaya</span>
       </button>
-    </div></div>
+    </div>
+    </div>
 </>
   );
 }

@@ -24,19 +24,12 @@ export default function Contact() {
   };
   return (
     <>
-<div><section className="contact-hero" aria-label="Contact introduction">
-      <div className="contact-hero-bg">
-        <img src="images/hero.jpg" alt="" width="1600" height="900" loading="lazy" decoding="async" />
-        <div className="contact-hero-overlay" aria-hidden="true"></div>
-      </div>
-      <div className="contact-hero-inner">
-        <p className="contact-hero-kicker">We’re here to help</p>
-        <h1>Let’s plan your next journey</h1>
-        <p className="contact-hero-lead">
-          Share your dates, destinations, and group size — we’ll reply with options, inclusions, and a clear price.
-        </p>
-      </div>
-    </section><div className="contact-layout">
+      <div className="section">
+        <div className="page-intro">
+          <h1>Let’s plan your next journey</h1>
+          <p>Share your dates, destinations, and group size — we’ll reply with options, inclusions, and a clear price.</p>
+        </div>
+<div className="contact-layout">
       <aside className="contact-aside">
         <div className="contact-card contact-card--accent">
           <p className="contact-card-label">Direct line</p>
@@ -119,7 +112,8 @@ export default function Contact() {
           <button type="submit" className="btn btn-primary btn-block">Continue to WhatsApp</button>
         </form>
       </div>
-    </div></div>
+    </div>
+    </div>
 </>
   );
 }

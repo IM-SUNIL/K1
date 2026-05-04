@@ -1,12 +1,31 @@
 "use client";
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { packages } from '@/data/packages';
+import { ExpandingCards } from '@/components/ui/expanding-cards';
+import { 
+  Mountain, 
+  Snowflake, 
+  Landmark, 
+  Compass, 
+  MapPin, 
+  Building2,
+  Tent,
+  Building,
+  Camera,
+  ChevronLeft,
+  ChevronRight
+} from 'lucide-react';
 
 export default function Home() {
   const [currentImg, setCurrentImg] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
+  const featuredPackages = Object.values(packages);
+  const extendedPackages = [...featuredPackages, ...featuredPackages, ...featuredPackages];
+  const [carouselIdx, setCarouselIdx] = useState(featuredPackages.length);
+  const [isTransitioning, setIsTransitioning] = useState(true);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -22,6 +41,49 @@ export default function Home() {
       clearInterval(interval);
     };
   }, []);
+
+  // Carousel Auto-slide
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextCarousel();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [featuredPackages.length]);
+
+  const nextCarousel = () => {
+    setIsTransitioning(true);
+    setCarouselIdx((prev) => prev + 1);
+  };
+  const prevCarousel = () => {
+    setIsTransitioning(true);
+    setCarouselIdx((prev) => prev - 1);
+  };
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      // Re-enable transition after the jump
+      const timer = setTimeout(() => setIsTransitioning(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
+
+  useEffect(() => {
+    // Jump back to middle set for infinite loop
+    if (carouselIdx >= featuredPackages.length * 2) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCarouselIdx(featuredPackages.length);
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+    if (carouselIdx < featuredPackages.length) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCarouselIdx(featuredPackages.length * 2 - 1);
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+  }, [carouselIdx, featuredPackages.length]);
 
   const getImgPath = (img) => {
     return isMobile ? `/images/mobile/${img}` : `/images/laptop/${img}`;
@@ -41,13 +103,13 @@ export default function Home() {
         <div className="hero-overlay" aria-hidden="true"></div>
       </div>
       <div className="hero-content">
-        <p className="hero-kicker">Kashmir · Himachal · Uttrakhand</p>
-        <h1>One of the best travel in Katra for Package Tours</h1>
+        <p className="hero-kicker">Kashmir · Ladakh · Himachal · Uttrakhand</p>
+        <h1>North India's Most Trusted Travel Partner</h1>
         <p className="tagline">
-          Hand-picked stays, dependable cabs, and clear pricing for Kashmir, Himachal, Vaishno Devi, and beyond.
+          From the spiritual heights of Vaishno Devi to the majestic peaks of Ladakh. Hand-picked stays, dependable cabs, and clear pricing.
         </p>
         <div className="hero-actions">
-          <Link className="btn btn-primary" href="/packages">Browse packages</Link>
+          <Link className="btn btn-primary" href="/packages">Explore packages</Link>
           <Link className="btn btn-ghost" href="https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20help%20planning%20a%20trip." target="_blank" rel="noopener noreferrer">Message us</Link>
         </div>
       </div>
@@ -56,74 +118,81 @@ export default function Home() {
     <div className="marquee-container" aria-hidden="true">
       <div className="marquee-content">
         <div className="marquee-item"><span>✦</span> Kashmir</div>
+        <div className="marquee-item"><span>✦</span> Ladakh</div>
         <div className="marquee-item"><span>✦</span> Himachal Pradesh</div>
         <div className="marquee-item"><span>✦</span> Vaishno Devi</div>
         <div className="marquee-item"><span>✦</span> Rajasthan</div>
         <div className="marquee-item"><span>✦</span> Uttrakhand</div>
-        <div className="marquee-item"><span>✦</span> Amritsar</div>
+        <div className="marquee-item"><span>✦</span> Taj Mahal</div>
         {/* Duplicate for infinite loop */}
         <div className="marquee-item"><span>✦</span> Kashmir</div>
+        <div className="marquee-item"><span>✦</span> Ladakh</div>
         <div className="marquee-item"><span>✦</span> Himachal Pradesh</div>
         <div className="marquee-item"><span>✦</span> Vaishno Devi</div>
         <div className="marquee-item"><span>✦</span> Rajasthan</div>
         <div className="marquee-item"><span>✦</span> Uttrakhand</div>
-        <div className="marquee-item"><span>✦</span> Amritsar</div>
+        <div className="marquee-item"><span>✦</span> Taj Mahal</div>
       </div>
     </div>
 
-    <section className="section" aria-labelledby="featured-heading">
+    <section className="section overflow-hidden" aria-labelledby="featured-heading">
       <div className="section-head section-head--featured">
         <div>
           <p className="section-kicker" id="featured-heading">Curated for you</p>
           <h2 className="section-title">Popular itineraries</h2>
         </div>
-        <Link className="link-arrow" href="/packages">View all</Link>
       </div>
-      <div className="scroll-row-wrap scroll-row-wrap--itineraries">
-        <div className="scroll-row scroll-row--itineraries">
-          <article className="package-card">
-            <img src="images/kashmir2.jpg" alt="Dal Lake and mountains in Kashmir" width="480" height="384" loading="lazy" />
-            <div className="package-card-body">
-              <h3>Kashmir escape</h3>
-              <p className="meta">5 nights · Srinagar &amp; surrounds</p>
+      
+      <div className="carousel-outer">
+        <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
+          <ChevronLeft size={24} />
+        </button>
+        <button onClick={nextCarousel} className="carousel-side-btn right" aria-label="Next itinerary">
+          <ChevronRight size={24} />
+        </button>
 
-              <Link href="/packages/kashmir-escape" style={{ display: 'block', textAlign: 'center', margin: '12px 0', color: 'var(--text-secondary)', textDecoration: 'underline', opacity: 0.7, fontSize: '0.9rem' }}>more details</Link>
-              <Link className="btn btn-primary btn-block" href="https://wa.me/919906130577?text=Hi%2C%20I%20want%20to%20book%20Kashmir%20escape." target="_blank" rel="noopener noreferrer">Book now</Link>
-            </div>
-          </article>
-          <article className="package-card">
-            <img src="images/himachal1.jpg" alt="Snow-capped peaks in Himachal Pradesh" width="480" height="384" loading="lazy" />
-            <div className="package-card-body">
-              <h3>Himachal circuit</h3>
-              <p className="meta">6 nights · Hill stations &amp; drives</p>
-
-              <Link href="/packages/himachal-circuit" style={{ display: 'block', textAlign: 'center', margin: '12px 0', color: 'var(--text-secondary)', textDecoration: 'underline', opacity: 0.7, fontSize: '0.9rem' }}>more details</Link>
-              <Link className="btn btn-primary btn-block" href="https://wa.me/919906130577?text=Hi%2C%20I%20want%20to%20book%20Himachal%20circuit." target="_blank" rel="noopener noreferrer">Book now</Link>
-            </div>
-          </article>
-          <article className="package-card">
-            <img src="images/vaishnodevi1.jpg" alt="Mountain path toward Vaishno Devi shrine" width="480" height="384" loading="lazy" />
-            <div className="package-card-body">
-              <h3>Vaishno Devi yatra</h3>
-              <p className="meta">3 nights · Katra &amp; darshan support</p>
-
-              <Link href="/packages/vaishno-devi-yatra" style={{ display: 'block', textAlign: 'center', margin: '12px 0', color: 'var(--text-secondary)', textDecoration: 'underline', opacity: 0.7, fontSize: '0.9rem' }}>more details</Link>
-              <Link className="btn btn-primary btn-block" href="https://wa.me/919906130577?text=Hi%2C%20I%20want%20to%20book%20Vaishno%20Devi%20yatra." target="_blank" rel="noopener noreferrer">Book now</Link>
-            </div>
-          </article>
-          <article className="package-card">
-            <img src="images/rajasthan1.jpg" alt="Historic palace and architecture in Rajasthan" width="480" height="384" loading="lazy" />
-            <div className="package-card-body">
-              <h3>Rajasthan heritage</h3>
-              <p className="meta">7 nights · Forts &amp; desert towns</p>
-
-              <Link href="/packages/rajasthan-heritage" style={{ display: 'block', textAlign: 'center', margin: '12px 0', color: 'var(--text-secondary)', textDecoration: 'underline', opacity: 0.7, fontSize: '0.9rem' }}>more details</Link>
-              <Link className="btn btn-primary btn-block" href="https://wa.me/919906130577?text=Hi%2C%20I%20want%20to%20book%20Rajasthan%20heritage." target="_blank" rel="noopener noreferrer">Book now</Link>
-            </div>
-          </article>
+        <div className="carousel-container">
+          <div 
+            className="carousel-track" 
+            style={{ 
+              transform: `translateX(-${carouselIdx * (isMobile ? 100 : 33.333)}%)`,
+              transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
+            }}
+          >
+            {extendedPackages.map((pkg, idx) => (
+              <div key={`${pkg.id}-${idx}`} className="carousel-item">
+                <article className="package-card">
+                  <img src={pkg.image} alt={pkg.title} width="480" height="384" loading="lazy" />
+                  <div className="package-card-body">
+                    <div className="pkg-card-head">
+                      <h3>{pkg.title}</h3>
+                      <p className="meta">{pkg.duration}</p>
+                    </div>
+                    <p className="pkg-overview">{pkg.overview}</p>
+                    <div className="pkg-card-foot">
+                      <Link href={`/packages/${pkg.id}`} className="link-details">View Details</Link>
+                      <Link 
+                        className="btn btn-primary btn-sm" 
+                        href={`https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(pkg.title)}%20package.`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                      >
+                        Book now
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      
+      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+        <Link className="link-arrow" href="/packages">View all packages →</Link>
+      </div>
     </section>
+
 
     <section className="section" aria-labelledby="activities-heading">
       <div className="section-head">
@@ -163,6 +232,95 @@ export default function Home() {
             <h3>Candlelight Dinner</h3>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section className="section bg-warm/30" aria-labelledby="top-dest-heading">
+      <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '3rem' }}>
+        <div className="page-intro">
+          <p className="section-kicker">Plan your next trip</p>
+          <h2 className="section-title" id="top-dest-heading">Top Destinations</h2>
+          <p className="max-w-2xl mx-auto mt-4 text-muted">
+            Explore the most iconic landscapes and spiritual landmarks of North India. 
+            Hover or click on a card to discover more.
+          </p>
+        </div>
+      </div>
+      
+      <div className="flex justify-center px-4">
+        <ExpandingCards 
+          items={[
+            {
+              id: "ladakh",
+              title: "Ladakh",
+              description: "The land of high passes, surreal moonscapes and crystal clear lakes.",
+              imgSrc: "/images/ladakh.png",
+              icon: <Mountain size={24} />,
+              linkHref: "/destinations",
+            },
+            {
+              id: "kashmir",
+              title: "Kashmir",
+              description: "Paradise on earth with pristine valleys, shikaras and alpine meadows.",
+              imgSrc: "/images/kashmir2.jpg",
+              icon: <Snowflake size={24} />,
+              linkHref: "/destinations",
+            },
+            {
+              id: "vaishnodevi",
+              title: "Vaishno Devi",
+              description: "A holy journey to the sacred shrine in the heart of Trikuta mountains.",
+              imgSrc: "/images/vaishnodevi1.jpg",
+              icon: <Landmark size={24} />,
+              linkHref: "/destinations",
+            },
+            {
+              id: "uttarakhand",
+              title: "Uttarakhand",
+              description: "Dev Bhoomi - the land of gods, mountains and serene river confluences.",
+              imgSrc: "/images/uttarakhand.png",
+              icon: <Compass size={24} />,
+              linkHref: "/destinations",
+            },
+            {
+              id: "vrindavan",
+              title: "Vrindavan",
+              description: "The spiritual heart of Braj Bhoomi, vibrating with divine energy and temples.",
+              imgSrc: "/images/vrindavan.png",
+              icon: <MapPin size={24} />,
+              linkHref: "/destinations",
+            },
+            {
+              id: "agra",
+              title: "Agra",
+              description: "Home to the eternal Taj Mahal and the rich heritage of the Mughal empire.",
+              imgSrc: "/images/tajmahal.png",
+              icon: <Building2 size={24} />,
+              linkHref: "/destinations",
+            },
+            {
+              id: "himachal",
+              title: "Himachal",
+              description: "The land of snow-capped peaks, lush valleys and adventurous mountain trails.",
+              imgSrc: "/images/himachal1.jpg",
+              icon: <Tent size={24} />,
+              linkHref: "/destinations",
+            },
+            {
+              id: "delhi",
+              title: "Delhi",
+              description: "India's vibrant capital, where ancient history meets modern city life.",
+              imgSrc: "/images/delhi1.jpg",
+              icon: <Building size={24} />,
+              linkHref: "/destinations",
+            },
+          ]} 
+          defaultActiveIndex={0} 
+        />
+      </div>
+
+      <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+        <Link href="/destinations" className="btn btn-outline">Explore all destinations</Link>
       </div>
     </section>
 

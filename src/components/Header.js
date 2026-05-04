@@ -49,6 +49,7 @@ export default function Header() {
             <ul className="nav-links">
               <li><Link onClick={() => setIsOpen(false)} href="/" aria-current={pathname === '/' ? "page" : undefined}>Home</Link></li>
               <li><Link onClick={() => setIsOpen(false)} href="/packages" aria-current={pathname.startsWith('/packages') ? "page" : undefined}>Packages</Link></li>
+              <li><Link onClick={() => setIsOpen(false)} href="/destinations" aria-current={pathname === '/destinations' ? "page" : undefined}>Destinations</Link></li>
               <li><Link onClick={() => setIsOpen(false)} href="/gallery" aria-current={pathname === '/gallery' ? "page" : undefined}>Gallery</Link></li>
               <li><Link onClick={() => setIsOpen(false)} href="/contact" aria-current={pathname === '/contact' ? "page" : undefined}>Contact</Link></li>
               <li><Link onClick={() => setIsOpen(false)} href="/about" aria-current={pathname === '/about' ? "page" : undefined}>About</Link></li>
