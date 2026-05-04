@@ -330,7 +330,7 @@ ul {
   }
 }
 
-/* â€”â€”â€” Buttons â€”â€”â€” */
+/* ——— Buttons ——— */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -346,6 +346,55 @@ ul {
   cursor: pointer;
   transition: transform 0.15s, box-shadow 0.2s, background 0.2s, color 0.2s;
   text-align: center;
+}
+
+/* ——— Hero Branding ——— */
+.hero-branding {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.85;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.brand-word {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(4rem, 12vw, 10rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+
+.brand-word:nth-child(2) {
+  margin-left: 2rem;
+  opacity: 0.9;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .hero-branding {
+    line-height: 0.95;
+  }
+  .brand-word {
+    font-size: 4.5rem;
+  }
+  .brand-word:nth-child(2) {
+    margin-left: 0;
+  }
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
 }
 
 .btn:active {
@@ -838,17 +887,7 @@ ul {
   position: relative;
 }
 
-.testimonial-card::before {
-  content: "â€œ";
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  line-height: 1;
-  color: var(--coral);
-  opacity: 0.35;
-  position: absolute;
-  top: 0.65rem;
-  right: 1rem;
-}
+
 
 .testimonial-card .stars {
   color: #b45309;
@@ -2457,6 +2496,12 @@ details[open] .faq-summary::after {
     width: 44px;
     height: 44px;
   }
-  .carousel-side-btn.left { left: 1rem; }
-  .carousel-side-btn.right { right: 1rem; }
+
+  .carousel-side-btn.left {
+    left: 1rem;
+  }
+
+  .carousel-side-btn.right {
+    right: 1rem;
+  }
 }
