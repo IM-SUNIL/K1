@@ -8,6 +8,23 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const pkg = packages[slug];
+
+  if (!pkg) {
+    return {
+      title: 'Package Not Found | Katra Travels',
+    };
+  }
+
+  return {
+    title: `${pkg.title} | ${pkg.duration} - Katra Travels`,
+    description: pkg.overview.substring(0, 160) + '...',
+    keywords: [pkg.title, pkg.duration, 'Katra Travels', 'Tour Package', 'North India Travel', 'Local Tour Operator'],
+  };
+}
+
 export default async function PackageDetail({ params }) {
   const { slug } = await params;
   const pkg = packages[slug];
@@ -15,6 +32,26 @@ export default async function PackageDetail({ params }) {
   if (!pkg) {
     notFound();
   }
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Trip",
+    "name": pkg.title,
+    "description": pkg.overview,
+    "duration": pkg.duration,
+    "provider": {
+      "@type": "TravelAgency",
+      "name": "Katra Travels",
+      "url": "https://katratravels.com"
+    },
+    "itinerary": pkg.itinerary.map((day, idx) => ({
+      "@type": "HowToStep",
+      "name": `${day.day}: ${day.title}`,
+      "text": day.description,
+      "position": idx + 1
+    })),
+    "image": pkg.image
+  };
 
   return (
     <>
@@ -99,6 +136,10 @@ export default async function PackageDetail({ params }) {
           </div>
         </div>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }
