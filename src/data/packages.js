@@ -86,7 +86,7 @@ export const packages = {
     id: "delhi-tour",
     title: "Delhi Tour",
     duration: "2 nights / 3 days",
-    image: "/images/packages/Delhi.jpg",
+    image: "/images/packages/delhi.jpg",
     overview: "A quick getaway exploring the historical monuments and bustling culture of India's capital.",
     includes: ["Hotel", "Cab", "Breakfast", "Sightseeing"],
     itinerary: [
@@ -137,7 +137,7 @@ export const packages = {
     id: "vrindavan-mathura-agra",
     title: "Braj & Taj Heritage",
     duration: "3 nights / 4 days",
-    image: "/images/packages/Braj&Taj.png",
+    image: "/images/packages/brajtaj.png",
     overview: "Visit the holy land of Lord Krishna and the world-famous Taj Mahal in Agra.",
     includes: ["Hotel", "Cab", "Breakfast", "Sightseeing", "Guide at Taj Mahal"],
     itinerary: [

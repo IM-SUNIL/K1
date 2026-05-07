@@ -4,13 +4,13 @@ export default function Destinations() {
   const destinations = [
     { name: 'Kashmir', image: '/images/destinations/kashmir.jpg', desc: 'The Paradise on Earth with stunning lakes and valleys.' },
     { name: 'Ladakh', image: '/images/destinations/ladakh.png', desc: 'The land of high passes and surreal landscapes.' },
-    { name: 'Vaishno Devi', image: '/images/destinations/Vaishnodevi.jpg', desc: 'Spiritual journey to the holy shrine in Trikuta Hills.' },
+    { name: 'Vaishno Devi', image: '/images/destinations/vaishnodevi.jpg', desc: 'Spiritual journey to the holy shrine in Trikuta Hills.' },
     { name: 'Himachal', image: '/images/destinations/himachal.jpg', desc: 'Snow-capped peaks and adventurous mountain trails.' },
     { name: 'Uttrakhand', image: '/images/destinations/uttarakhand.png', desc: 'Land of Gods, mountains, and serene rivers.' },
-    { name: 'Rajasthan', image: '/images/destinations/Rajasthan.jpg', desc: 'Experience the royal heritage, majestic forts, and golden sand dunes.' },
-    { name: 'Delhi', image: '/images/destinations/Delhi.jpg', desc: 'The heart of India with rich history and markets.' },
+    { name: 'Rajasthan', image: '/images/destinations/rajasthan.jpg', desc: 'Experience the royal heritage, majestic forts, and golden sand dunes.' },
+    { name: 'Delhi', image: '/images/destinations/delhi.jpg', desc: 'The heart of India with rich history and markets.' },
     { name: 'Vrindavan', image: '/images/destinations/vrindavan.png', desc: 'The sacred city where Lord Krishna spent his childhood.' },
-    { name: 'Amritsar', image: '/images/destinations/Amritsar.jpg', desc: 'Home to the Golden Temple and rich Punjabi heritage.' }
+    { name: 'Amritsar', image: '/images/destinations/amritsar.jpg', desc: 'Home to the Golden Temple and rich Punjabi heritage.' }
   ];
 
   return (
