@@ -24,8 +24,16 @@ export default function Header() {
         </div>
       </div>
       <div className="nav-inner">
-        <Link onClick={() => setIsOpen(false)} href="/" className="logo" aria-label="Katra Travels Home" style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          <svg viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: '44px', width: '100%', display: 'block' }}>
+        {/* Mobile: Hamburger LEFT */}
+        <button type="button" className="nav-toggle" aria-expanded={isOpen} aria-controls="nav-menu" aria-label="Open menu" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Logo CENTER */}
+        <Link onClick={() => setIsOpen(false)} href="/" className="logo" aria-label="Katra Travels Home">
+          <svg viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <title>Katra Travels Logo</title>
             <defs>
               <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
@@ -39,6 +47,8 @@ export default function Header() {
             <path d="M92 14L96 11L100 14" stroke="url(#brand-grad)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.5 }} />
           </svg>
         </Link>
+
+        {/* Mobile: Call & WhatsApp RIGHT */}
         <div className="nav-quick" aria-label="Quick contact">
           <Link onClick={() => setIsOpen(false)} className="nav-icon-btn" href="tel:9906130577" aria-label="Call Us">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -51,11 +61,6 @@ export default function Header() {
             </svg>
           </Link>
         </div>
-        <button type="button" className="nav-toggle" aria-expanded={isOpen} aria-controls="nav-menu" aria-label="Open menu" onClick={toggleMenu}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
         <div className={`nav-panel ${isOpen ? "is-open" : ""}`} onClick={(e) => { if (e.target.classList.contains("nav-panel")) setIsOpen(false) }} id="nav-menu">
           <div className="nav-sheet">
             <ul className="nav-links">
