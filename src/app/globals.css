@@ -90,13 +90,13 @@ ul {
 .nav-inner {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0.15rem;
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
+  justify-content: space-between;
   position: relative;
+  width: 100%;
 }
 
 .logo {
@@ -105,7 +105,21 @@ ul {
   font-size: 1.2rem;
   color: var(--ink);
   letter-spacing: -0.03em;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  position: absolute;
+  left: 45%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.logo svg {
+  height: 36px;
+  width: auto;
+  max-width: 220px;
+  display: block;
 }
 
 .logo:hover,
@@ -117,13 +131,13 @@ ul {
 .nav-quick {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  margin-left: auto;
+  gap: 0.2rem;
+  flex-shrink: 0;
 }
 
 .nav-icon-btn {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -158,8 +172,8 @@ ul {
 }
 
 .nav-toggle {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -167,7 +181,7 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
   z-index: 101;
@@ -285,6 +299,22 @@ ul {
 
   .nav-toggle {
     display: none;
+  }
+
+  .nav-inner {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    position: static;
+    transform: none;
+    flex-shrink: 0;
+    max-width: none;
+  }
+
+  .logo svg {
+    height: 44px;
+    max-width: none;
   }
 
   .nav-panel {
@@ -958,11 +988,18 @@ ul {
 /* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Packages grid ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .packages-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.1rem;
-  padding: 0 1.25rem 2.5rem;
+  padding: 0 0 2.5rem;
   max-width: 1180px;
   margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .packages-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1.25rem 2.5rem;
+  }
 }
 
 @media (min-width: 900px) {

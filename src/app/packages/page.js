@@ -6,10 +6,9 @@ export default function Packages() {
 
   return (
     <>
-      <div className="section">
+      <div className="section" style={{ paddingTop: '1rem' }}>
         <div className="page-intro">
           <h1>Our Tour Packages</h1>
-          <p>Premium itineraries covering North India's most breathtaking landscapes and spiritual landmarks.</p>
         </div>
         <div className="packages-grid">
           {packageList.map((pkg) => (
