@@ -20,8 +20,34 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
+  const travelAgencySchema = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Katra Travels",
+    "description": "Premium curated Kashmir & North India tour packages. Hand-picked hotels, local transport, and 24/7 support based in Katra, Jammu.",
+    "url": "https://katratravels.com",
+    "telephone": "+919906130577",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Katra",
+      "addressRegion": "Jammu & Kashmir",
+      "postalCode": "182301",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "32.990127",
+      "longitude": "74.927788"
+    },
+    "sameAs": [
+      "https://wa.me/919906130577"
+    ],
+    "priceRange": "$$"
+  };
+
   const [currentImg, setCurrentImg] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+
 
   const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
   const featuredPackages = Object.values(packages);
@@ -475,6 +501,10 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencySchema) }}
+      />
     </>
   );
 }

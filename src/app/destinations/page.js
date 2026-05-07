@@ -1,6 +1,13 @@
 import Link from 'next/link';
 
+export const metadata = {
+  title: 'Explore Top Travel Destinations in North India | Katra Travels',
+  description: 'Explore the absolute best destinations of North India. Plan spiritual tours to Vaishno Devi and Vrindavan, or discover the scenic beauty of Kashmir, Ladakh, and Himachal valleys.',
+  keywords: ['Katra Travels destinations', 'Kashmir tour destinations', 'Vaishno Devi travel guide', 'Ladakh tourism', 'Vrindavan places to visit'],
+};
+
 export default function Destinations() {
+
   const destinations = [
     { name: 'Kashmir', image: '/images/destinations/kashmir.jpg', desc: 'The Paradise on Earth with stunning lakes and valleys.' },
     { name: 'Ladakh', image: '/images/destinations/ladakh.png', desc: 'The land of high passes and surreal landscapes.' },

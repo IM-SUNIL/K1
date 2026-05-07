@@ -1,7 +1,14 @@
 import Link from 'next/link';
 import { packages } from '@/data/packages';
 
+export const metadata = {
+  title: 'North India & Kashmir Tour Packages | Katra Travels',
+  description: 'Book customized tour packages for Kashmir, Vaishno Devi, Ladakh, Himachal, and Uttarakhand. Trusted travel agency in Katra with premium stays and reliable transport.',
+  keywords: ['Katra Travels packages', 'Vaishno Devi tour packages', 'Kashmir tour package', 'Kashmir family tour with cab', 'Himachal tour package'],
+};
+
 export default function Packages() {
+
   const packageList = Object.values(packages);
 
   return (
