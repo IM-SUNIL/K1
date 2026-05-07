@@ -25,7 +25,7 @@ export default function Home() {
     "@type": "TravelAgency",
     "name": "Katra Travels",
     "description": "Premium curated Kashmir & North India tour packages. Hand-picked hotels, local transport, and 24/7 support based in Katra, Jammu.",
-    "url": "https://katratravels.com",
+    "url": "https://katratravels.in",
     "telephone": "+919906130577",
     "address": {
       "@type": "PostalAddress",

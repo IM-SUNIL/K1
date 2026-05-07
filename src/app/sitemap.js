@@ -1,7 +1,7 @@
 import { packages } from '@/data/packages';
 
 export default function sitemap() {
-  const baseUrl = 'https://katratravels.com';
+  const baseUrl = 'https://katratravels.in';
 
   // Base static routes
   const routes = ['', '/packages', '/destinations', '/gallery', '/contact', '/about'].map((route) => ({
