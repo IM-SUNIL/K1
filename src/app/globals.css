@@ -90,7 +90,7 @@ ul {
 .nav-inner {
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0 0.25rem;
+  padding: 0 0.15rem;
   height: var(--nav-h);
   display: flex;
   align-items: center;
@@ -116,9 +116,9 @@ ul {
 }
 
 .logo svg {
-  height: 34px;
+  height: 36px;
   width: auto;
-  max-width: 180px;
+  max-width: 220px;
   display: block;
 }
 
@@ -131,13 +131,13 @@ ul {
 .nav-quick {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.2rem;
   flex-shrink: 0;
 }
 
 .nav-icon-btn {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -172,8 +172,8 @@ ul {
 }
 
 .nav-toggle {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -181,7 +181,7 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
   z-index: 101;
@@ -988,11 +988,18 @@ ul {
 /* ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Packages grid ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â */
 .packages-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.1rem;
-  padding: 0 1.25rem 2.5rem;
+  padding: 0 0 2.5rem;
   max-width: 1180px;
   margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .packages-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 1.25rem 2.5rem;
+  }
 }
 
 @media (min-width: 900px) {

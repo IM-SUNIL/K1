@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "@/lib/utils"; 
+import { cn } from "@/lib/utils";
 
 export const ExpandingCards = React.forwardRef(({ className, items, defaultActiveIndex = 0, autoPlayInterval = 5000, ...props }, ref) => {
   const [activeIndex, setActiveIndex] = React.useState(defaultActiveIndex);
@@ -20,7 +20,7 @@ export const ExpandingCards = React.forwardRef(({ className, items, defaultActiv
   // Auto-play effect
   React.useEffect(() => {
     if (isPaused) return;
-    
+
     const timer = setInterval(() => {
       setActiveIndex((current) => (current + 1) % items.length);
     }, autoPlayInterval);
@@ -30,15 +30,15 @@ export const ExpandingCards = React.forwardRef(({ className, items, defaultActiv
 
   const handleInteraction = (index) => {
     setActiveIndex(index);
-    setIsPaused(true); 
+    setIsPaused(true);
   };
 
   const gridStyle = React.useMemo(() => {
     if (activeIndex === null) return {};
-    
+
     if (isDesktop) {
       const columns = items
-        .map((_, index) => (index === activeIndex ? "5fr" : "1.2fr")) 
+        .map((_, index) => (index === activeIndex ? "5fr" : "1.2fr"))
         .join(" ");
       return { gridTemplateColumns: columns };
     } else {
@@ -54,17 +54,20 @@ export const ExpandingCards = React.forwardRef(({ className, items, defaultActiv
       className={cn(
         "w-full max-w-[1380px] gap-2 md:gap-3",
         "grid",
-        "h-[850px] md:h-[550px]", 
+        "h-[850px] md:h-[550px]",
         "transition-[grid-template-columns,grid-template-rows] duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]",
         className,
       )}
       style={{
         ...gridStyle,
-        ...(isDesktop 
+        ...(isDesktop
           ? { gridTemplateRows: '1fr' }
           : { gridTemplateColumns: '1fr' }
-        )
+        ),
+        padding: 0,
+        listStyle: 'none'
       }}
+
       ref={ref}
       onMouseEnter={() => isDesktop && setIsPaused(true)}
       onMouseLeave={() => isDesktop && setIsPaused(false)}
@@ -95,19 +98,19 @@ export const ExpandingCards = React.forwardRef(({ className, items, defaultActiv
                   "block w-full object-cover transition-all duration-700 ease-in-out",
                   isActive ? "h-full scale-105 opacity-100" : "h-full scale-110 opacity-100" // Always 100% opacity for images
                 )}
-                style={{ height: '100%', filter: 'grayscale(0%)' }} 
+                style={{ height: '100%', filter: 'grayscale(0%)' }}
               />
             </div>
-            
+
             {/* Gradient Overlay - Lighter for inactive to show image better */}
             <div className={cn(
               "absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity duration-700",
-              isActive ? "opacity-100" : "opacity-60" 
+              isActive ? "opacity-100" : "opacity-60"
             )} />
 
             {/* Content Layer */}
             <div className="absolute inset-0 z-20 p-4 md:p-6 flex flex-col h-full w-full pointer-events-none">
-              
+
               {/* Massive Stylish Title for Inactive Strips - Smaller to avoid clipping */}
               <div className={cn(
                 "absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out",
@@ -117,14 +120,14 @@ export const ExpandingCards = React.forwardRef(({ className, items, defaultActiv
                   "font-thin uppercase tracking-widest text-white select-none pointer-events-none",
                   "md:rotate-90 md:text-[3.5rem] lg:text-[4rem]", // Reduced further to ensure fit
                   "rotate-0 text-[2.2rem]" // Reduced for mobile
-                )} 
-                style={{ 
-                  fontFamily: "'DM Sans', sans-serif",
-                  whiteSpace: 'nowrap',
-                  fontWeight: 100,
-                  opacity: 0.85, 
-                  filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.6))'
-                }}>
+                )}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    whiteSpace: 'nowrap',
+                    fontWeight: 100,
+                    opacity: 0.85,
+                    filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.6))'
+                  }}>
                   {item.title}
                 </h3>
               </div>
@@ -142,7 +145,7 @@ export const ExpandingCards = React.forwardRef(({ className, items, defaultActiv
                     {item.title}
                   </h3>
                 </div>
-                
+
                 <p className="max-w-xl text-[14px] md:text-lg text-white/95 line-clamp-3 leading-relaxed drop-shadow-md font-medium">
                   {item.description}
                 </p>
