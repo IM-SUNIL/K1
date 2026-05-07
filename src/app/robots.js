@@ -4,6 +4,6 @@ export default function robots() {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://katratravels.com/sitemap.xml',
+    sitemap: 'https://katratravels.in/sitemap.xml',
   };
 }

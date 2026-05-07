@@ -42,7 +42,7 @@ export default async function PackageDetail({ params }) {
     "provider": {
       "@type": "TravelAgency",
       "name": "Katra Travels",
-      "url": "https://katratravels.com"
+      "url": "https://katratravels.in"
     },
     "itinerary": pkg.itinerary.map((day, idx) => ({
       "@type": "HowToStep",
