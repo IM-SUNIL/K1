@@ -3,7 +3,7 @@ export const packages = {
     id: "kashmir-escape",
     title: "Kashmir Tour",
     duration: "5 nights / 6 days",
-    image: "/images/kashmir2.jpg",
+    image: "/images/packages/kashmir.jpg",
     overview: "Experience the breathtaking beauty of Kashmir, often called Paradise on Earth. Enjoy serene Shikara rides, majestic alpine mountains, and lush green valleys.",
     includes: ["Hotel", "Cab", "Breakfast & Dinner", "Shikara Ride", "Toll & Parking"],
     itinerary: [
@@ -23,7 +23,7 @@ export const packages = {
     id: "himachal-circuit",
     title: "Himachal Tour",
     duration: "6 nights / 7 days",
-    image: "/images/himachal1.jpg",
+    image: "/images/packages/himachal.jpg",
     overview: "A refreshing journey through the pristine hill stations of Himachal Pradesh. From the bustling mall roads of Shimla to the adventurous valleys of Manali.",
     includes: ["Hotel", "Cab", "Breakfast & Dinner", "Sightseeing", "Toll & Parking"],
     itinerary: [
@@ -45,7 +45,7 @@ export const packages = {
     id: "vaishno-devi-yatra",
     title: "Vaishno Devi Tour",
     duration: "3 nights / 4 days",
-    image: "/images/vaishnodevi1.jpg",
+    image: "/images/packages/vaishnodevi.jpg",
     overview: "A divine pilgrimage to the holy shrine of Mata Vaishno Devi. Enjoy a seamless spiritual journey with completely sorted logistics and comfortable stays.",
     includes: ["Hotel", "Cab", "Breakfast", "Yatra Slips Assistance", "Toll & Parking"],
     itinerary: [
@@ -62,7 +62,7 @@ export const packages = {
     id: "rajasthan-heritage",
     title: "Rajasthan Tour",
     duration: "7 nights / 8 days",
-    image: "/images/rajasthan1.jpg",
+    image: "/images/packages/rajasthan.jpg",
     overview: "Immerse yourself in the royal heritage of Rajasthan. Explore magnificent forts, opulent palaces, and the golden sand dunes of the Thar Desert.",
     includes: ["Hotel", "Cab", "Breakfast", "Desert Safari", "Guide Services"],
     itinerary: [
@@ -86,7 +86,7 @@ export const packages = {
     id: "delhi-tour",
     title: "Delhi Tour",
     duration: "2 nights / 3 days",
-    image: "/images/delhi1.jpg",
+    image: "/images/packages/Delhi.jpg",
     overview: "A quick getaway exploring the historical monuments and bustling culture of India's capital.",
     includes: ["Hotel", "Cab", "Breakfast", "Sightseeing"],
     itinerary: [
@@ -102,7 +102,7 @@ export const packages = {
     id: "ladakh-adventure",
     title: "Ladakh Adventure",
     duration: "7 nights / 8 days",
-    image: "/images/ladakh.png",
+    image: "/images/packages/ladakh.jpg",
     overview: "Explore the land of high passes. Experience the unique culture, stunning monasteries, and high-altitude lakes of Ladakh.",
     includes: ["Hotel", "Cab", "Breakfast & Dinner", "Inner Line Permits", "Toll & Parking"],
     itinerary: [
@@ -120,7 +120,7 @@ export const packages = {
     id: "uttarakhand-hills",
     title: "Uttarakhand Divine Hills",
     duration: "5 nights / 6 days",
-    image: "/images/uttarakhand.png",
+    image: "/images/packages/uttarakhand.jpg",
     overview: "A journey through the 'Land of Gods'. Visit Rishikesh, Mussoorie, and the beautiful hills of Kumaon.",
     includes: ["Hotel", "Cab", "Breakfast & Dinner", "Sightseeing", "Toll & Parking"],
     itinerary: [
@@ -137,7 +137,7 @@ export const packages = {
     id: "vrindavan-mathura-agra",
     title: "Braj & Taj Heritage",
     duration: "3 nights / 4 days",
-    image: "/images/tajmahal.png",
+    image: "/images/packages/Braj&Taj.png",
     overview: "Visit the holy land of Lord Krishna and the world-famous Taj Mahal in Agra.",
     includes: ["Hotel", "Cab", "Breakfast", "Sightseeing", "Guide at Taj Mahal"],
     itinerary: [
@@ -152,7 +152,7 @@ export const packages = {
     id: "north-india-circuit",
     title: "14-Day Northern India Circuit",
     duration: "13 nights / 14 days",
-    image: "/images/north_india_circuit.png",
+    image: "/images/packages/north_india_circuit.jpg",
     overview: "This epic circuit covers Jammu, Kashmir, Ladakh, and the religious shrines of Himachal Pradesh. A journey from the plains to the highest passes.",
     includes: ["Hotel", "Cab", "Breakfast & Dinner", "Permits", "Airport Transfers"],
     itinerary: [
