@@ -97,6 +97,8 @@ ul {
   justify-content: flex-start;
   gap: 0.5rem;
   position: relative;
+  overflow: hidden;
+  width: 100%;
 }
 
 .logo {
@@ -105,7 +107,9 @@ ul {
   font-size: 1.2rem;
   color: var(--ink);
   letter-spacing: -0.03em;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 200px;
 }
 
 .logo:hover,
@@ -119,6 +123,7 @@ ul {
   align-items: center;
   gap: 0.35rem;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .nav-icon-btn {

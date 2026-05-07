@@ -25,7 +25,7 @@ export default function Header() {
       </div>
       <div className="nav-inner">
         <Link onClick={() => setIsOpen(false)} href="/" className="logo" aria-label="Katra Travels Home" style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          <svg height="44" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: 'auto', display: 'block' }}>
+          <svg viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxHeight: '44px', width: '100%', display: 'block' }}>
             <title>Katra Travels Logo</title>
             <defs>
               <linearGradient id="brand-grad" x1="0" y1="0" x2="1" y2="1">
