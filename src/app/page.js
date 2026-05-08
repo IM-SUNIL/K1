@@ -24,7 +24,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     "name": "Katra Travels",
-    "description": "Premium curated Kashmir & North India tour packages. Hand-picked hotels, local transport, and 24/7 support based in Katra, Jammu.",
+    "description": "Katra Travels is a premier Katra travel agency offering spiritual Vaishno Devi yatras, local transport, and the best travel in Katra Kashmir package tours. Contact certified local travel agents in Katra for premium stays and reliable cabs.",
     "url": "https://katratravels.in",
     "telephone": "+919906130577",
     "address": {
@@ -42,7 +42,9 @@ export default function Home() {
     "sameAs": [
       "https://wa.me/919906130577"
     ],
-    "priceRange": "$$"
+    "priceRange": "$$",
+    "areaServed": ["Katra", "Jammu & Kashmir", "Srinagar", "Kashmir", "Ladakh", "Himachal Pradesh", "Uttarakhand"],
+    "knowsAbout": ["tour and travels in Katra", "Katra travel agents", "Katra travel agency", "travel in Katra", "best travel in Katra Kashmir package tour", "Kashmir travel agencys"]
   };
 
   const [currentImg, setCurrentImg] = useState(0);
@@ -456,6 +458,25 @@ export default function Home() {
               <summary className="faq-summary">Do you offer 24/7 support during the trip?</summary>
               <div className="faq-content">Absolutely. You will have a dedicated local coordinator available via WhatsApp or Call 24/7 throughout your entire journey.</div>
             </details>
+          </div>
+        </section>
+
+        {/* Local Travel Agency Expertise Section for SEO and trust */}
+        <section className="section bg-warm" aria-labelledby="expertise-heading" style={{ padding: '4rem 1.25rem', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
+          <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
+            <p className="section-kicker" style={{ justifyContent: 'center' }}>Certified Local Tour Operators</p>
+            <h2 className="section-title" id="expertise-heading" style={{ marginBottom: '1.5rem', fontSize: '2.25rem' }}>Your Trusted Tour &amp; Travels in Katra</h2>
+            <div style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.1rem', color: 'var(--muted)', lineHeight: '1.8', textAlign: 'center' }}>
+              <p style={{ marginBottom: '1.25rem' }}>
+                Welcome to <strong>Katra Travels</strong>, your premier choice for comprehensive <strong>tour and travels in Katra</strong>. As a leading, certified <strong>Katra travel agency</strong> and local <strong>Katra travel agents</strong>, we specialize in transforming your spiritual pilgrimages and adventure holidays into comfortable, lifelong memories.
+              </p>
+              <p style={{ marginBottom: '1.25rem' }}>
+                Whether you are searching for hassle-free local sightseeing, secure <strong>travel in Katra</strong>, transport logistics, or booking the <strong>best travel in Katra Kashmir package tour</strong>, we offer highly competitive pricing, custom-tailored itineraries, handpicked hotel stays, and professional local cab drivers.
+              </p>
+              <p style={{ margin: 0 }}>
+                As a registered, trusted <strong>Kashmir travel agency</strong>, we are committed to delivering top-tier service. From booking serene houseboats in Srinagar to organizing smooth mountain commutes and Vaishno Devi helicopter yatra logistics, our local travel experts ensure you travel with absolute peace of mind.
+              </p>
+            </div>
           </div>
         </section>
 
