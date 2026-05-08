@@ -23,7 +23,7 @@ const VerifyIcon = () => (
 );
 
 const ReviewCard = ({ name, review, stars = 5 }) => (
-  <div className="p-6 rounded-2xl mx-4 shadow-sm border border-black/5 hover:shadow-md transition-all duration-300 w-[320px] shrink-0 bg-white/80 backdrop-blur-sm">
+  <div className="p-6 rounded-2xl mx-4 shadow-sm border border-black/5 hover:shadow-md transition-all duration-300 w-[320px] shrink-0 bg-white/80 backdrop-blur-sm" style={{ whiteSpace: "normal" }}>
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between h-7">
         <div className="flex items-center gap-1.5 min-w-0">
