@@ -23,7 +23,7 @@ const VerifyIcon = () => (
 );
 
 const ReviewCard = ({ name, review, stars = 5 }) => (
-  <div className="p-6 rounded-2xl mx-4 shadow-sm border border-black/5 hover:shadow-md transition-all duration-300 w-[320px] shrink-0 bg-white/80 backdrop-blur-sm">
+  <div className="p-6 rounded-2xl mx-4 shadow-sm border border-black/5 hover:shadow-md transition-all duration-300 w-[320px] shrink-0 bg-white/80 backdrop-blur-sm" style={{ whiteSpace: "normal" }}>
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between h-7">
         <div className="flex items-center gap-1.5 min-w-0">
@@ -43,18 +43,114 @@ const ReviewCard = ({ name, review, stars = 5 }) => (
   </div>
 );
 
-function MarqueeRow({ data, reverse = false, speed = 40 }) {
-  const doubled = React.useMemo(() => [...data, ...data], [data]);
+function MarqueeRow({ data, reverse = false, speed = 0.5 }) {
+  const containerRef = React.useRef(null);
+  const [isDown, setIsDown] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+  const [scrollLeftState, setScrollLeftState] = React.useState(0);
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  // Triple the data to allow smooth infinite loop in both directions
+  const tripled = React.useMemo(() => [...data, ...data, ...data], [data]);
+
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    let animationFrameId;
+
+    const scroll = () => {
+      // Only auto-scroll when NOT dragging and NOT hovered
+      if (!isDown && !isHovered) {
+        if (reverse) {
+          container.scrollLeft -= speed;
+          // Loop reset
+          if (container.scrollLeft <= 0) {
+            container.scrollLeft = container.scrollWidth / 3;
+          }
+        } else {
+          container.scrollLeft += speed;
+          // Loop reset
+          if (container.scrollLeft >= (container.scrollWidth * 2) / 3) {
+            container.scrollLeft = container.scrollWidth / 3;
+          }
+        }
+      }
+      animationFrameId = requestAnimationFrame(scroll);
+    };
+
+    // Set initial scroll in the middle of our tripled container to allow seamless scrolling
+    container.scrollLeft = container.scrollWidth / 3;
+
+    animationFrameId = requestAnimationFrame(scroll);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isDown, isHovered, reverse, speed]);
+
+  // Mouse Drag handlers
+  const handleMouseDown = (e) => {
+    setIsDown(true);
+    setStartX(e.pageX - containerRef.current.offsetLeft);
+    setScrollLeftState(containerRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDown(false);
+    setIsHovered(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDown(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    containerRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
+  // Touch handlers
+  const handleTouchStart = (e) => {
+    setIsHovered(true);
+    setIsDown(true);
+    setStartX(e.targetTouches[0].clientX - containerRef.current.offsetLeft);
+    setScrollLeftState(containerRef.current.scrollLeft);
+  };
+
+  const handleTouchEnd = () => {
+    setIsDown(false);
+    setIsHovered(false);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDown) return;
+    const x = e.targetTouches[0].clientX - containerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    containerRef.current.scrollLeft = scrollLeftState - walk;
+  };
+
   return (
-    <div className="relative w-full overflow-hidden py-4">
-      <div
-        className={cn(
-          "flex min-w-full gap-2",
-          reverse ? "animate-marquee-reverse" : "animate-marquee"
-        )}
-        style={{ "--duration": `${speed}s` }}
-      >
-        {doubled.map((item, i) => (
+    <div
+      ref={containerRef}
+      onMouseDown={handleMouseDown}
+      onMouseLeave={handleMouseLeave}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onTouchMove={handleTouchMove}
+      className="relative w-full overflow-x-auto scrollbar-hide py-4 cursor-grab active:cursor-grabbing select-none flex"
+      style={{
+        display: "flex",
+        whiteSpace: "nowrap",
+        WebkitOverflowScrolling: "touch",
+      }}
+    >
+      <div className="flex shrink-0">
+        {tripled.map((item, i) => (
           <ReviewCard key={i} name={item.name} review={item.review} />
         ))}
       </div>
@@ -88,8 +184,8 @@ export default function MarqueeReviews() {
       <div className="pointer-events-none absolute left-0 top-0 h-full w-24 md:w-48 z-10 bg-gradient-to-r from-[#f3f1ec] to-transparent" />
       <div className="pointer-events-none absolute right-0 top-0 h-full w-24 md:w-48 z-10 bg-gradient-to-l from-[#f3f1ec] to-transparent" />
       
-      <MarqueeRow data={row1} speed={25} />
-      <MarqueeRow data={row2} reverse speed={30} />
+      <MarqueeRow data={row1} speed={0.6} />
+      <MarqueeRow data={row2} reverse speed={0.7} />
     </div>
   );
 }

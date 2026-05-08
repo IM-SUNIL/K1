@@ -3,8 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Katra Travels | Journeys through Kashmir & India',
-  description: 'Katra Travels — curated Kashmir & India journeys. Trusted packages, stays, and transport.',
+  title: 'Best Tour and Travels in Katra | Katra Travel Agency & Kashmir Packages',
+  description: 'Katra Travels is a premier Katra travel agency offering spiritual Vaishno Devi yatras, local transport, and the best travel in Katra Kashmir package tours. Contact certified local travel agents in Katra for premium stays and reliable cabs.',
+  keywords: ['tour and travels in Katra', 'Katra travel agents', 'Katra travel agency', 'travel in Katra', 'best travel in Katra Kashmir package tour', 'Kashmir travel agencys', 'Katra Travels'],
 };
 
 export default function RootLayout({ children }) {

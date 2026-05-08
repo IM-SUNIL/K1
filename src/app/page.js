@@ -16,7 +16,8 @@ import {
   Building,
   Camera,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Clock
 } from 'lucide-react';
 
 export default function Home() {
@@ -24,7 +25,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     "name": "Katra Travels",
-    "description": "Premium curated Kashmir & North India tour packages. Hand-picked hotels, local transport, and 24/7 support based in Katra, Jammu.",
+    "description": "Katra Travels is a premier Katra travel agency offering spiritual Vaishno Devi yatras, local transport, and the best travel in Katra Kashmir package tours. Contact certified local travel agents in Katra for premium stays and reliable cabs.",
     "url": "https://katratravels.in",
     "telephone": "+919906130577",
     "address": {
@@ -42,7 +43,9 @@ export default function Home() {
     "sameAs": [
       "https://wa.me/919906130577"
     ],
-    "priceRange": "$$"
+    "priceRange": "$$",
+    "areaServed": ["Katra", "Jammu & Kashmir", "Srinagar", "Kashmir", "Ladakh", "Himachal Pradesh", "Uttarakhand"],
+    "knowsAbout": ["tour and travels in Katra", "Katra travel agents", "Katra travel agency", "travel in Katra", "best travel in Katra Kashmir package tour", "Kashmir travel agencys"]
   };
 
   const [currentImg, setCurrentImg] = useState(0);
@@ -51,9 +54,68 @@ export default function Home() {
 
   const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
   const featuredPackages = Object.values(packages);
+  const flagshipPkg = packages["north-india-circuit"];
   const extendedPackages = [...featuredPackages, ...featuredPackages, ...featuredPackages];
   const [carouselIdx, setCarouselIdx] = useState(featuredPackages.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [activeDayIdx, setActiveDayIdx] = useState(0);
+
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextCarousel();
+    } else if (isRightSwipe) {
+      prevCarousel();
+    }
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  const [dragStart, setDragStart] = useState(0);
+  const [dragEnd, setDragEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleMouseDown = (e) => {
+    setDragStart(e.clientX);
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    setDragEnd(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (!dragStart || !dragEnd) return;
+    const distance = dragStart - dragEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextCarousel();
+    } else if (isRightSwipe) {
+      prevCarousel();
+    }
+    setDragStart(0);
+    setDragEnd(0);
+  };
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -165,6 +227,162 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ——— Flagship Featured Package (Overland Grand Tour) ——— */}
+        <section className="section bg-warm/15 !py-8 md:!py-16" aria-labelledby="flagship-heading">
+          <div className="container max-w-[1200px] mx-auto px-4">
+            <div className="section-head text-center mb-8 md:mb-12">
+              <span className="section-kicker">🏆 Flagship Experience</span>
+              <h2 className="section-title text-[2rem] md:text-[3.2rem]" id="flagship-heading" style={{ lineHeight: '1.1' }}>
+                Ultimate 14-Day Northern India Circuit
+              </h2>
+              <p className="section-subtitle max-w-[700px] mx-auto text-muted">
+                An epic overland journey covering Katra, Kashmir, Ladakh, Himachal, and traditional temples. Experience the ultimate grand circuit of the North.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              {/* Left Spotlight Column */}
+              <div className="lg:col-span-5 flex flex-col justify-between bg-white rounded-3xl overflow-hidden shadow-lg border border-black/5 relative group min-h-[400px]">
+                {/* Image Overlay Header */}
+                <div className="relative h-[220px] overflow-hidden">
+                  <img
+                    src="/images/packages/north_india_circuit.jpg"
+                    alt="14-Day Northern India Circuit"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-amber-500 text-white font-bold text-[12px] px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+                      Bestseller
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="text-amber-400 font-semibold text-[13px] tracking-wide mb-1 flex items-center gap-1">
+                      <Clock size={14} /> 13 Nights / 14 Days
+                    </p>
+                    <h3 className="text-xl font-bold tracking-tight">Overland Grand Tour</h3>
+                  </div>
+                </div>
+
+                {/* Package Quick Summary */}
+                <div className="p-6 flex-grow flex flex-col justify-between gap-6">
+                  <div className="space-y-4">
+                    <p className="text-muted text-[14px] leading-relaxed">
+                      {flagshipPkg?.overview}
+                    </p>
+
+                    {/* Includes Badges */}
+                    <div className="flex flex-wrap gap-1.5 pt-2">
+                      {flagshipPkg?.includes.map((inc) => (
+                        <span
+                          key={inc}
+                          className="bg-primary/5 text-primary text-[11px] font-semibold px-2.5 py-1 rounded-md flex items-center gap-1"
+                        >
+                          ✦ {inc}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <span className="text-[12px] text-muted uppercase tracking-wider block">Hotels & Transport</span>
+                      <span className="font-bold text-ink text-[14px]">Fully Hand-Picked & Included</span>
+                    </div>
+                    <Link
+                      className="btn btn-primary btn-sm flex items-center justify-center gap-2 px-6 py-3.5"
+                      href={`https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20the%2014-Day%20Northern%20India%20Circuit%20flagship%20package.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Book Flagship Tour
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Interactive Itinerary Column */}
+              <div className="lg:col-span-7 flex flex-col bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-black/5 justify-between">
+                <div>
+                  <div className="flex items-center justify-between pb-4 border-b border-black/5 mb-6">
+                    <div>
+                      <h3 className="font-bold text-lg text-ink">Explore Full Day-by-Day Itinerary</h3>
+                      <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
+                    </div>
+                    <span 
+                      className="text-xs font-bold px-3 py-1.5 rounded-full"
+                      style={{ backgroundColor: "rgba(30, 92, 74, 0.1)", color: "var(--accent)" }}
+                    >
+                      Interactive Map
+                    </span>
+                  </div>
+
+                  {/* Day Navigation Pills Grid */}
+                  <div className="overflow-x-auto scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0 mb-6">
+                    <div className="flex gap-2 min-w-max py-1">
+                      {flagshipPkg?.itinerary.map((day, idx) => (
+                        <button
+                          key={day.day}
+                          onClick={() => setActiveDayIdx(idx)}
+                          className={`w-11 h-11 rounded-full font-bold text-[14px] flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer ${activeDayIdx === idx
+                              ? 'scale-110 shadow-md shadow-accent/20'
+                              : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
+                            }`}
+                          style={{
+                            backgroundColor: activeDayIdx === idx ? "var(--accent)" : "",
+                            color: activeDayIdx === idx ? "#ffffff" : ""
+                          }}
+                          aria-label={`Show ${day.day}`}
+                        >
+                          {idx + 1}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Day Content Card with smooth transition */}
+                  <div className="min-h-[170px] bg-warm/15 rounded-2xl p-5 md:p-6 border border-warm-dark/5 relative overflow-hidden transition-all duration-300">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+                      <span 
+                        className="text-[13px] font-bold tracking-widest uppercase block"
+                        style={{ color: "var(--accent)" }}
+                      >
+                        {flagshipPkg?.itinerary[activeDayIdx]?.day}
+                      </span>
+                      <span className="text-xs bg-white text-muted border border-black/5 font-semibold px-2.5 py-1 rounded-md">
+                        Overland Route Step {activeDayIdx + 1}/14
+                      </span>
+                    </div>
+                    <h4 className="font-bold text-lg text-ink mb-2">
+                      {flagshipPkg?.itinerary[activeDayIdx]?.title}
+                    </h4>
+                    <p className="text-[14px] leading-relaxed text-muted">
+                      {flagshipPkg?.itinerary[activeDayIdx]?.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Route Indicator Progress Bar */}
+                <div className="pt-6 mt-6 border-t border-black/5">
+                  <div className="flex justify-between items-center text-xs text-muted mb-2 font-medium">
+                    <span>Route Progress: {flagshipPkg?.itinerary[activeDayIdx]?.title}</span>
+                    <span>{Math.round(((activeDayIdx + 1) / 14) * 100)}%</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-warm rounded-full overflow-hidden">
+                    <div
+                      className="h-full transition-all duration-500 ease-out"
+                      style={{ 
+                        width: `${((activeDayIdx + 1) / 14) * 100}%`,
+                        backgroundColor: "var(--accent)"
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="section overflow-hidden !pb-0 pt-4 md:pt-8">
           <div className="carousel-outer">
             <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
@@ -174,7 +392,17 @@ export default function Home() {
               <ChevronRight size={24} />
             </button>
 
-            <div className="carousel-container">
+            <div
+              className="carousel-container"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              style={{ cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none' }}
+            >
               <div
                 className="carousel-track"
                 style={{
@@ -221,10 +449,10 @@ export default function Home() {
           <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '1.5rem' }}>
             <div className="page-intro">
               <p className="section-kicker">Plan your next trip</p>
-              <h2 
-                className="section-title text-[1.9rem] md:text-[8rem]" 
+              <h2
+                className="section-title text-[1.9rem] md:text-[8rem]"
                 id="top-dest-heading"
-                style={{ 
+                style={{
                   lineHeight: '1',
                   fontWeight: '800',
                   letterSpacing: '-0.05em'
@@ -456,6 +684,25 @@ export default function Home() {
               <summary className="faq-summary">Do you offer 24/7 support during the trip?</summary>
               <div className="faq-content">Absolutely. You will have a dedicated local coordinator available via WhatsApp or Call 24/7 throughout your entire journey.</div>
             </details>
+          </div>
+        </section>
+
+        {/* Local Travel Agency Expertise Section for SEO and trust */}
+        <section className="section bg-warm" aria-labelledby="expertise-heading" style={{ padding: '4rem 1.25rem', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)' }}>
+          <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
+            <p className="section-kicker" style={{ justifyContent: 'center' }}>Certified Local Tour Operators</p>
+            <h2 className="section-title" id="expertise-heading" style={{ marginBottom: '1.5rem', fontSize: '2.25rem' }}>Your Trusted Tour &amp; Travels in Katra</h2>
+            <div style={{ maxWidth: '800px', margin: '0 auto', fontSize: '1.1rem', color: 'var(--muted)', lineHeight: '1.8', textAlign: 'center' }}>
+              <p style={{ marginBottom: '1.25rem' }}>
+                Welcome to <strong>Katra Travels</strong>, your premier choice for comprehensive <strong>tour and travels in Katra</strong>. As a leading, certified <strong>Katra travel agency</strong> and local <strong>Katra travel agents</strong>, we specialize in transforming your spiritual pilgrimages and adventure holidays into comfortable, lifelong memories.
+              </p>
+              <p style={{ marginBottom: '1.25rem' }}>
+                Whether you are searching for hassle-free local sightseeing, secure <strong>travel in Katra</strong>, transport logistics, or booking the <strong>best travel in Katra Kashmir package tour</strong>, we offer highly competitive pricing, custom-tailored itineraries, handpicked hotel stays, and professional local cab drivers.
+              </p>
+              <p style={{ margin: 0 }}>
+                As a registered, trusted <strong>Kashmir travel agency</strong>, we are committed to delivering top-tier service. From booking serene houseboats in Srinagar to organizing smooth mountain commutes and Vaishno Devi helicopter yatra logistics, our local travel experts ensure you travel with absolute peace of mind.
+              </p>
+            </div>
           </div>
         </section>
 
