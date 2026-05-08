@@ -309,7 +309,10 @@ export default function Home() {
                       <h3 className="font-bold text-lg text-ink">Explore Full Day-by-Day Itinerary</h3>
                       <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
                     </div>
-                    <span className="text-xs bg-accent/10 text-accent font-bold px-3 py-1.5 rounded-full">
+                    <span 
+                      className="text-xs font-bold px-3 py-1.5 rounded-full"
+                      style={{ backgroundColor: "rgba(30, 92, 74, 0.1)", color: "var(--accent)" }}
+                    >
                       Interactive Map
                     </span>
                   </div>
@@ -322,9 +325,13 @@ export default function Home() {
                           key={day.day}
                           onClick={() => setActiveDayIdx(idx)}
                           className={`w-11 h-11 rounded-full font-bold text-[14px] flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer ${activeDayIdx === idx
-                              ? 'bg-accent text-white scale-110 shadow-md shadow-accent/20'
+                              ? 'scale-110 shadow-md shadow-accent/20'
                               : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
                             }`}
+                          style={{
+                            backgroundColor: activeDayIdx === idx ? "var(--accent)" : "",
+                            color: activeDayIdx === idx ? "#ffffff" : ""
+                          }}
                           aria-label={`Show ${day.day}`}
                         >
                           {idx + 1}
@@ -336,7 +343,10 @@ export default function Home() {
                   {/* Day Content Card with smooth transition */}
                   <div className="min-h-[170px] bg-warm/15 rounded-2xl p-5 md:p-6 border border-warm-dark/5 relative overflow-hidden transition-all duration-300">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
-                      <span className="text-[13px] font-bold text-accent tracking-widest uppercase block">
+                      <span 
+                        className="text-[13px] font-bold tracking-widest uppercase block"
+                        style={{ color: "var(--accent)" }}
+                      >
                         {flagshipPkg?.itinerary[activeDayIdx]?.day}
                       </span>
                       <span className="text-xs bg-white text-muted border border-black/5 font-semibold px-2.5 py-1 rounded-md">
@@ -360,8 +370,11 @@ export default function Home() {
                   </div>
                   <div className="w-full h-1.5 bg-warm rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-accent transition-all duration-500 ease-out"
-                      style={{ width: `${((activeDayIdx + 1) / 14) * 100}%` }}
+                      className="h-full transition-all duration-500 ease-out"
+                      style={{ 
+                        width: `${((activeDayIdx + 1) / 14) * 100}%`,
+                        backgroundColor: "var(--accent)"
+                      }}
                     ></div>
                   </div>
                 </div>
