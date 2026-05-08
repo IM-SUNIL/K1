@@ -16,7 +16,8 @@ import {
   Building,
   Camera,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Clock
 } from 'lucide-react';
 
 export default function Home() {
@@ -53,9 +54,11 @@ export default function Home() {
 
   const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
   const featuredPackages = Object.values(packages);
+  const flagshipPkg = packages["north-india-circuit"];
   const extendedPackages = [...featuredPackages, ...featuredPackages, ...featuredPackages];
   const [carouselIdx, setCarouselIdx] = useState(featuredPackages.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [activeDayIdx, setActiveDayIdx] = useState(0);
 
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -223,6 +226,150 @@ export default function Home() {
             <div className="marquee-item"><span>✦</span> Taj Mahal</div>
           </div>
         </div>
+
+        {/* ——— Flagship Featured Package (Overland Grand Tour) ——— */}
+        <section className="section bg-warm/15 !py-8 md:!py-16 border-b border-warm-dark/5" aria-labelledby="flagship-heading">
+          <div className="container max-w-[1200px] mx-auto px-4">
+            <div className="section-head text-center mb-8 md:mb-12">
+              <span className="section-kicker">🏆 Flagship Experience</span>
+              <h2 className="section-title text-[2rem] md:text-[3.2rem]" id="flagship-heading" style={{ lineHeight: '1.1' }}>
+                Ultimate 14-Day Northern India Circuit
+              </h2>
+              <p className="section-subtitle max-w-[700px] mx-auto text-muted">
+                An epic overland journey covering Katra, Kashmir, Ladakh, Himachal, and traditional temples. Experience the ultimate grand circuit of the North.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+              {/* Left Spotlight Column */}
+              <div className="lg:col-span-5 flex flex-col justify-between bg-white rounded-3xl overflow-hidden shadow-lg border border-black/5 relative group min-h-[400px]">
+                {/* Image Overlay Header */}
+                <div className="relative h-[220px] overflow-hidden">
+                  <img 
+                    src="/images/packages/north-india-circuit.jpg" 
+                    alt="14-Day Northern India Circuit" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-amber-500 text-white font-bold text-[12px] px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+                      Bestseller
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="text-amber-400 font-semibold text-[13px] tracking-wide mb-1 flex items-center gap-1">
+                      <Clock size={14} /> 13 Nights / 14 Days
+                    </p>
+                    <h3 className="text-xl font-bold tracking-tight">Overland Grand Tour</h3>
+                  </div>
+                </div>
+
+                {/* Package Quick Summary */}
+                <div className="p-6 flex-grow flex flex-col justify-between gap-6">
+                  <div className="space-y-4">
+                    <p className="text-muted text-[14px] leading-relaxed">
+                      {flagshipPkg?.overview}
+                    </p>
+                    
+                    {/* Includes Badges */}
+                    <div className="flex flex-wrap gap-1.5 pt-2">
+                      {flagshipPkg?.includes.map((inc) => (
+                        <span 
+                          key={inc} 
+                          className="bg-primary/5 text-primary text-[11px] font-semibold px-2.5 py-1 rounded-md flex items-center gap-1"
+                        >
+                          ✦ {inc}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <span className="text-[12px] text-muted uppercase tracking-wider block">Hotels & Transport</span>
+                      <span className="font-bold text-ink text-[14px]">Fully Hand-Picked & Included</span>
+                    </div>
+                    <Link
+                      className="btn btn-primary btn-sm flex items-center justify-center gap-2 px-6 py-3.5"
+                      href={`https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20the%2014-Day%20Northern%20India%20Circuit%20flagship%20package.`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Book Flagship Tour
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Interactive Itinerary Column */}
+              <div className="lg:col-span-7 flex flex-col bg-white rounded-3xl p-6 md:p-8 shadow-lg border border-black/5 justify-between">
+                <div>
+                  <div className="flex items-center justify-between pb-4 border-b border-black/5 mb-6">
+                    <div>
+                      <h3 className="font-bold text-lg text-ink">Explore Full Day-by-Day Itinerary</h3>
+                      <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
+                    </div>
+                    <span className="text-xs bg-primary/10 text-primary font-bold px-3 py-1.5 rounded-full">
+                      Interactive Map
+                    </span>
+                  </div>
+
+                  {/* Day Navigation Pills Grid */}
+                  <div className="overflow-x-auto scrollbar-hide -mx-6 px-6 lg:mx-0 lg:px-0 mb-6">
+                    <div className="flex gap-2 min-w-max py-1">
+                      {flagshipPkg?.itinerary.map((day, idx) => (
+                        <button
+                          key={day.day}
+                          onClick={() => setActiveDayIdx(idx)}
+                          className={`w-11 h-11 rounded-full font-bold text-[14px] flex items-center justify-center transition-all duration-300 shrink-0 ${
+                            activeDayIdx === idx
+                              ? 'bg-primary text-white scale-110 shadow-md shadow-primary/20'
+                              : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
+                          }`}
+                          aria-label={`Show ${day.day}`}
+                        >
+                          {idx + 1}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Day Content Card with smooth transition */}
+                  <div className="min-h-[170px] bg-warm/15 rounded-2xl p-5 md:p-6 border border-warm-dark/5 relative overflow-hidden transition-all duration-300">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+                      <span className="text-[13px] font-bold text-primary tracking-widest uppercase block">
+                        {flagshipPkg?.itinerary[activeDayIdx]?.day}
+                      </span>
+                      <span className="text-xs bg-white text-muted border border-black/5 font-semibold px-2.5 py-1 rounded-md">
+                        Overland Route Step {activeDayIdx + 1}/14
+                      </span>
+                    </div>
+                    <h4 className="font-bold text-lg text-ink mb-2">
+                      {flagshipPkg?.itinerary[activeDayIdx]?.title}
+                    </h4>
+                    <p className="text-[14px] leading-relaxed text-muted">
+                      {flagshipPkg?.itinerary[activeDayIdx]?.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Bottom Route Indicator Progress Bar */}
+                <div className="pt-6 mt-6 border-t border-black/5">
+                  <div className="flex justify-between items-center text-xs text-muted mb-2 font-medium">
+                    <span>Route Progress: {flagshipPkg?.itinerary[activeDayIdx]?.title}</span>
+                    <span>{Math.round(((activeDayIdx + 1) / 14) * 100)}%</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-warm rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-primary transition-all duration-500 ease-out"
+                      style={{ width: `${((activeDayIdx + 1) / 14) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="section overflow-hidden !pb-0 pt-4 md:pt-8">
           <div className="carousel-outer">
