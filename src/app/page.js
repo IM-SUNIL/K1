@@ -245,9 +245,9 @@ export default function Home() {
               <div className="lg:col-span-5 flex flex-col justify-between bg-white rounded-3xl overflow-hidden shadow-lg border border-black/5 relative group min-h-[400px]">
                 {/* Image Overlay Header */}
                 <div className="relative h-[220px] overflow-hidden">
-                  <img 
-                    src="/images/packages/north-india-circuit.jpg" 
-                    alt="14-Day Northern India Circuit" 
+                  <img
+                    src="/images/packages/north_india_circuit.jpg"
+                    alt="14-Day Northern India Circuit"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -270,12 +270,12 @@ export default function Home() {
                     <p className="text-muted text-[14px] leading-relaxed">
                       {flagshipPkg?.overview}
                     </p>
-                    
+
                     {/* Includes Badges */}
                     <div className="flex flex-wrap gap-1.5 pt-2">
                       {flagshipPkg?.includes.map((inc) => (
-                        <span 
-                          key={inc} 
+                        <span
+                          key={inc}
                           className="bg-primary/5 text-primary text-[11px] font-semibold px-2.5 py-1 rounded-md flex items-center gap-1"
                         >
                           ✦ {inc}
@@ -309,7 +309,7 @@ export default function Home() {
                       <h3 className="font-bold text-lg text-ink">Explore Full Day-by-Day Itinerary</h3>
                       <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
                     </div>
-                    <span className="text-xs bg-primary/10 text-primary font-bold px-3 py-1.5 rounded-full">
+                    <span className="text-xs bg-accent/10 text-accent font-bold px-3 py-1.5 rounded-full">
                       Interactive Map
                     </span>
                   </div>
@@ -321,11 +321,10 @@ export default function Home() {
                         <button
                           key={day.day}
                           onClick={() => setActiveDayIdx(idx)}
-                          className={`w-11 h-11 rounded-full font-bold text-[14px] flex items-center justify-center transition-all duration-300 shrink-0 ${
-                            activeDayIdx === idx
-                              ? 'bg-primary text-white scale-110 shadow-md shadow-primary/20'
+                          className={`w-11 h-11 rounded-full font-bold text-[14px] flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer ${activeDayIdx === idx
+                              ? 'bg-accent text-white scale-110 shadow-md shadow-accent/20'
                               : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
-                          }`}
+                            }`}
                           aria-label={`Show ${day.day}`}
                         >
                           {idx + 1}
@@ -337,7 +336,7 @@ export default function Home() {
                   {/* Day Content Card with smooth transition */}
                   <div className="min-h-[170px] bg-warm/15 rounded-2xl p-5 md:p-6 border border-warm-dark/5 relative overflow-hidden transition-all duration-300">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
-                      <span className="text-[13px] font-bold text-primary tracking-widest uppercase block">
+                      <span className="text-[13px] font-bold text-accent tracking-widest uppercase block">
                         {flagshipPkg?.itinerary[activeDayIdx]?.day}
                       </span>
                       <span className="text-xs bg-white text-muted border border-black/5 font-semibold px-2.5 py-1 rounded-md">
@@ -360,8 +359,8 @@ export default function Home() {
                     <span>{Math.round(((activeDayIdx + 1) / 14) * 100)}%</span>
                   </div>
                   <div className="w-full h-1.5 bg-warm rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-primary transition-all duration-500 ease-out"
+                    <div
+                      className="h-full bg-accent transition-all duration-500 ease-out"
                       style={{ width: `${((activeDayIdx + 1) / 14) * 100}%` }}
                     ></div>
                   </div>
@@ -380,7 +379,7 @@ export default function Home() {
               <ChevronRight size={24} />
             </button>
 
-            <div 
+            <div
               className="carousel-container"
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -437,10 +436,10 @@ export default function Home() {
           <div className="section-head" style={{ justifyContent: 'center', textAlign: 'center', marginBottom: '1.5rem' }}>
             <div className="page-intro">
               <p className="section-kicker">Plan your next trip</p>
-              <h2 
-                className="section-title text-[1.9rem] md:text-[8rem]" 
+              <h2
+                className="section-title text-[1.9rem] md:text-[8rem]"
                 id="top-dest-heading"
-                style={{ 
+                style={{
                   lineHeight: '1',
                   fontWeight: '800',
                   letterSpacing: '-0.05em'
