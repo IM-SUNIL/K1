@@ -2546,3 +2546,12 @@ details[open] .faq-summary::after {
 .animate-marquee-reverse {
   animation: scrollMarquee var(--duration) linear infinite reverse;
 }
+
+/* Hide scrollbar utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

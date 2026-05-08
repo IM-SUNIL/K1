@@ -57,6 +57,63 @@ export default function Home() {
   const [carouselIdx, setCarouselIdx] = useState(featuredPackages.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
 
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextCarousel();
+    } else if (isRightSwipe) {
+      prevCarousel();
+    }
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
+  const [dragStart, setDragStart] = useState(0);
+  const [dragEnd, setDragEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleMouseDown = (e) => {
+    setDragStart(e.clientX);
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    setDragEnd(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    if (!dragStart || !dragEnd) return;
+    const distance = dragStart - dragEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextCarousel();
+    } else if (isRightSwipe) {
+      prevCarousel();
+    }
+    setDragStart(0);
+    setDragEnd(0);
+  };
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
@@ -176,7 +233,17 @@ export default function Home() {
               <ChevronRight size={24} />
             </button>
 
-            <div className="carousel-container">
+            <div 
+              className="carousel-container"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              style={{ cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none' }}
+            >
               <div
                 className="carousel-track"
                 style={{
