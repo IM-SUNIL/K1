@@ -2440,6 +2440,13 @@ details[open] .faq-summary::after {
   padding: 0 1.5rem;
 }
 
+@media (min-width: 768px) {
+  .carousel-container {
+    margin: 0;
+    padding: 0 1.5rem;
+  }
+}
+
 .carousel-track {
   display: flex;
   will-change: transform;
@@ -2489,10 +2496,17 @@ details[open] .faq-summary::after {
   color: var(--accent);
 }
 
-/* Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ Side Carousel Arrows Ã¢â‚¬â€Ã¢â‚¬â€Ã¢â‚¬â€ */
+/* ——— Side Carousel Arrows ——— */
 .carousel-outer {
   position: relative;
   margin: 0 -1.5rem;
+}
+
+@media (min-width: 768px) {
+  .carousel-outer {
+    margin: 0;
+    overflow: hidden;
+  }
 }
 
 .carousel-side-btn {
