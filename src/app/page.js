@@ -406,16 +406,26 @@ export default function Home() {
               <div
                 className="carousel-track"
                 style={{
-                  transform: `translateX(calc(var(--peek-gap) - ${carouselIdx} * var(--card-width)))`,
+                  transform: isMobile
+                    ? `translateX(calc(10% - ${carouselIdx * 80}%))`
+                    : `translateX(calc(6% - ${carouselIdx * 22}%))`,
                   transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
                 }}
               >
                 {extendedPackages.map((pkg, idx) => {
-                  const diff = idx - carouselIdx;
+                  const isActive = isMobile
+                    ? idx === carouselIdx
+                    : (idx >= carouselIdx && idx <= carouselIdx + 3);
                   return (
                     <div
                       key={`${pkg.id}-${idx}`}
-                      className={`carousel-item item-diff-${diff}`}
+                      className="carousel-item"
+                      style={{
+                        opacity: isActive ? 1 : 0.45,
+                        filter: isActive ? 'none' : 'blur(2.5px)',
+                        transform: isActive ? 'scale(1)' : 'scale(0.92)',
+                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      }}
                     >
                       <article className="package-card">
                         <img src={pkg.image} alt={pkg.title} width="480" height="384" loading="lazy" />
