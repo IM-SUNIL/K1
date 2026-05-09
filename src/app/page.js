@@ -384,7 +384,7 @@ export default function Home() {
         </section>
 
         <section className="section overflow-hidden !pb-0 pt-4 md:pt-8 !px-0">
-          <div className="carousel-outer">
+          <div className="carousel-outer" style={{ maxWidth: 'none', width: '100%' }}>
             <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
               <ChevronLeft size={24} />
             </button>
