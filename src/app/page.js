@@ -421,6 +421,8 @@ export default function Home() {
                       key={`${pkg.id}-${idx}`}
                       className="carousel-item"
                       style={{
+                        flex: isMobile ? '0 0 80%' : '0 0 22%',
+                        width: isMobile ? '80%' : '22%',
                         opacity: isActive ? 1 : 0.45,
                         filter: isActive ? 'none' : 'blur(2.5px)',
                         transform: isActive ? 'scale(1)' : 'scale(0.92)',
