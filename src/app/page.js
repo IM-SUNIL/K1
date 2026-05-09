@@ -309,7 +309,7 @@ export default function Home() {
                       <h3 className="font-bold text-lg text-ink">Explore Full Day-by-Day Itinerary</h3>
                       <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
                     </div>
-                    <span 
+                    <span
                       className="text-xs font-bold px-3 py-1.5 rounded-full"
                       style={{ backgroundColor: "rgba(30, 92, 74, 0.1)", color: "var(--accent)" }}
                     >
@@ -325,8 +325,8 @@ export default function Home() {
                           key={day.day}
                           onClick={() => setActiveDayIdx(idx)}
                           className={`w-11 h-11 rounded-full font-bold text-[14px] flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer ${activeDayIdx === idx
-                              ? 'scale-110 shadow-md shadow-accent/20'
-                              : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
+                            ? 'scale-110 shadow-md shadow-accent/20'
+                            : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
                             }`}
                           style={{
                             backgroundColor: activeDayIdx === idx ? "var(--accent)" : "",
@@ -343,7 +343,7 @@ export default function Home() {
                   {/* Day Content Card with smooth transition */}
                   <div className="min-h-[170px] bg-warm/15 rounded-2xl p-5 md:p-6 border border-warm-dark/5 relative overflow-hidden transition-all duration-300">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
-                      <span 
+                      <span
                         className="text-[13px] font-bold tracking-widest uppercase block"
                         style={{ color: "var(--accent)" }}
                       >
@@ -371,7 +371,7 @@ export default function Home() {
                   <div className="w-full h-1.5 bg-warm rounded-full overflow-hidden">
                     <div
                       className="h-full transition-all duration-500 ease-out"
-                      style={{ 
+                      style={{
                         width: `${((activeDayIdx + 1) / 14) * 100}%`,
                         backgroundColor: "var(--accent)"
                       }}
@@ -383,7 +383,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section overflow-hidden !pb-0 pt-4 md:pt-8" style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <section className="section overflow-hidden !pb-0 pt-4 md:pt-8 !px-0">
           <div className="carousel-outer">
             <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
               <ChevronLeft size={24} />
@@ -406,7 +406,7 @@ export default function Home() {
               <div
                 className="carousel-track"
                 style={{
-                  transform: isMobile 
+                  transform: isMobile
                     ? `translateX(calc(10% - ${carouselIdx * 80}%))`
                     : `translateX(calc(25% - ${carouselIdx * 50}%))`,
                   transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
@@ -415,8 +415,8 @@ export default function Home() {
                 {extendedPackages.map((pkg, idx) => {
                   const isActive = idx === carouselIdx;
                   return (
-                    <div 
-                      key={`${pkg.id}-${idx}`} 
+                    <div
+                      key={`${pkg.id}-${idx}`}
                       className="carousel-item"
                       style={{
                         opacity: isActive ? 1 : 0.45,
@@ -462,7 +462,7 @@ export default function Home() {
         <section className="section bg-white" aria-labelledby="guide-heading" style={{ padding: '4rem 1.25rem', borderTop: '1px solid var(--line)' }}>
           <div className="container max-w-[1100px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
+
               {/* Left Side: Interactive Transport Details */}
               <div className="lg:col-span-5 space-y-6">
                 <p className="section-kicker" style={{ justifyContent: 'flex-start' }}>Route &amp; Commute Hub</p>
@@ -472,7 +472,7 @@ export default function Home() {
                 <p className="text-muted text-[15px] leading-relaxed">
                   Plan your journey <strong>to katra</strong> seamlessly. Whether you are coming via train, flight, or driving down the highway, we provide verified information to make your road trip completely sorted.
                 </p>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-warm/20 border border-warm-dark/5">
                     <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0" style={{ color: "var(--accent)" }}>
@@ -509,7 +509,7 @@ export default function Home() {
                   <p>
                     As a verified <strong>travel agency in katra</strong>, we manage end-to-end transfers from Jammu Airport or Railway Station. Save our direct <strong>katra travel agency contact number</strong> to instantly book your highway commute, secure luxury cabs, or custom plan local sightseeing tours.
                   </p>
-                  
+
                   <div className="grid grid-cols-2 gap-4 pt-4 border-t border-black/5 text-ink">
                     <div>
                       <span className="text-[11px] uppercase tracking-wider text-muted block">Direct Taxi Bookings</span>
@@ -525,7 +525,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <Link 
+                  <Link
                     className="btn btn-sm text-xs font-bold py-3 px-5 rounded-xl cursor-pointer"
                     style={{ backgroundColor: "var(--accent)", color: "#fff" }}
                     href="https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20a%20taxi%20service%20from%20Jammu%20to%20Katra."
@@ -534,7 +534,7 @@ export default function Home() {
                   >
                     Book Taxi Service
                   </Link>
-                  <a 
+                  <a
                     className="btn btn-outline btn-sm text-xs font-bold py-3 px-5 rounded-xl cursor-pointer"
                     href="tel:9906130577"
                   >
