@@ -414,6 +414,7 @@ ul {
   .hero-title {
     font-size: 2.5rem;
   }
+
   .hero-subtitle {
     font-size: 0.9rem;
   }
@@ -552,7 +553,8 @@ ul {
   margin-bottom: 0.75rem;
 }
 
-.hero h1, .hero-title {
+.hero h1,
+.hero-title {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -637,7 +639,7 @@ ul {
   width: 100%;
 }
 
-.section > * {
+.section>* {
   max-width: 1440px;
   margin-left: auto;
   margin-right: auto;
@@ -2446,14 +2448,62 @@ details[open] .faq-summary::after {
 }
 
 .carousel-item {
-  flex: 0 0 80%;
+  flex: 0 0 var(--card-width);
+  width: var(--card-width);
   padding: 0 0.5rem;
+  opacity: 0.35;
+  filter: blur(3px);
+  transform: scale(0.9);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (min-width: 768px) {
   .carousel-item {
-    flex: 0 0 22.5%;
     padding: 0 0.75rem;
+    filter: blur(4.5px);
+    transform: scale(0.85);
+  }
+}
+
+/* Active status overrides in CSS based on responsive screen sizes */
+
+/* Mobile view: 1 active card (item-diff-0) */
+.carousel-item.item-diff-0 {
+  opacity: 1;
+  filter: none;
+  transform: scale(1);
+}
+
+/* Tablet view: 2 active cards (item-diff-0, item-diff-1) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .carousel-item.item-diff-0,
+  .carousel-item.item-diff-1 {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
+}
+
+/* Laptop view: 3 active cards (item-diff-0, item-diff-1, item-diff-2) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .carousel-item.item-diff-0,
+  .carousel-item.item-diff-1,
+  .carousel-item.item-diff-2 {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
+  }
+}
+
+/* Desktop view: 4 active cards (item-diff-0, item-diff-1, item-diff-2, item-diff-3) */
+@media (min-width: 1440px) {
+  .carousel-item.item-diff-0,
+  .carousel-item.item-diff-1,
+  .carousel-item.item-diff-2,
+  .carousel-item.item-diff-3 {
+    opacity: 1;
+    filter: none;
+    transform: scale(1);
   }
 }
 
@@ -2490,13 +2540,35 @@ details[open] .faq-summary::after {
   color: var(--accent);
 }
 
-/* ——— Side Carousel Arrows ——— */
 .carousel-outer {
+  --card-width: 80%;
+  --peek-gap: 10%;
   position: relative;
   margin: 0;
   overflow: hidden;
   max-width: none !important;
   width: 100% !important;
+}
+
+@media (min-width: 640px) {
+  .carousel-outer {
+    --card-width: 45%;
+    --peek-gap: 5%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carousel-outer {
+    --card-width: 30%;
+    --peek-gap: 5%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .carousel-outer {
+    --card-width: 22.5%;
+    --peek-gap: 5%;
+  }
 }
 
 .carousel-side-btn {
@@ -2553,6 +2625,7 @@ details[open] .faq-summary::after {
 .animate-marquee {
   animation: scrollMarquee var(--duration) linear infinite;
 }
+
 .animate-marquee-reverse {
   animation: scrollMarquee var(--duration) linear infinite reverse;
 }
@@ -2563,6 +2636,7 @@ details[open] .faq-summary::after {
   width: 0 !important;
   height: 0 !important;
 }
+
 .scrollbar-hide {
   -ms-overflow-style: none !important;
   scrollbar-width: none !important;

@@ -50,7 +50,6 @@ export default function Home() {
 
   const [currentImg, setCurrentImg] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [viewport, setViewport] = useState('mobile');
 
 
   const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
@@ -119,31 +118,16 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 768) {
-        setViewport('mobile');
-        setIsMobile(true);
-      } else if (width < 1024) {
-        setViewport('tablet');
-        setIsMobile(false);
-      } else if (width < 1440) {
-        setViewport('laptop');
-        setIsMobile(false);
-      } else {
-        setViewport('desktop');
-        setIsMobile(false);
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
 
     const interval = setInterval(() => {
       setCurrentImg((prev) => (prev + 1) % images.length);
     }, 6000);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', checkMobile);
       clearInterval(interval);
     };
   }, []);
@@ -194,15 +178,6 @@ export default function Home() {
   const getImgPath = (img) => {
     return isMobile ? `/images/mobile/${img}` : `/images/laptop/${img}`;
   };
-
-  const getCarouselParams = () => {
-    if (viewport === 'mobile') return { cardCount: 1, cardWidth: 80, peekGap: 10 };
-    if (viewport === 'tablet') return { cardCount: 2, cardWidth: 45, peekGap: 5 };
-    if (viewport === 'laptop') return { cardCount: 3, cardWidth: 30, peekGap: 5 };
-    return { cardCount: 4, cardWidth: 22.5, peekGap: 5 }; // desktop
-  };
-
-  const { cardCount: activeCount, cardWidth, peekGap } = getCarouselParams();
 
   return (
     <>
@@ -431,24 +406,16 @@ export default function Home() {
               <div
                 className="carousel-track"
                 style={{
-                  transform: `translateX(calc(${peekGap}% - ${carouselIdx * cardWidth}%))`,
+                  transform: `translateX(calc(var(--peek-gap) - ${carouselIdx} * var(--card-width)))`,
                   transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
                 }}
               >
                 {extendedPackages.map((pkg, idx) => {
-                  const isActive = idx >= carouselIdx && idx < carouselIdx + activeCount;
+                  const diff = idx - carouselIdx;
                   return (
-                    <div 
-                      key={`${pkg.id}-${idx}`} 
-                      className="carousel-item"
-                      style={{
-                        flex: `0 0 ${cardWidth}%`,
-                        width: `${cardWidth}%`,
-                        opacity: isActive ? 1 : 0.35,
-                        filter: isActive ? 'none' : (viewport === 'mobile' ? 'blur(3px)' : 'blur(4.5px)'),
-                        transform: isActive ? 'scale(1)' : (viewport === 'mobile' ? 'scale(0.9)' : 'scale(0.85)'),
-                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                      }}
+                    <div
+                      key={`${pkg.id}-${idx}`}
+                      className={`carousel-item item-diff-${diff}`}
                     >
                       <article className="package-card">
                         <img src={pkg.image} alt={pkg.title} width="480" height="384" loading="lazy" />
