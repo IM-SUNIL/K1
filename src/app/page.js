@@ -406,35 +406,49 @@ export default function Home() {
               <div
                 className="carousel-track"
                 style={{
-                  transform: `translateX(-${carouselIdx * (isMobile ? 100 : 33.333)}%)`,
+                  transform: isMobile 
+                    ? `translateX(calc(10% - ${carouselIdx * 80}%))`
+                    : `translateX(calc(25% - ${carouselIdx * 50}%))`,
                   transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
                 }}
               >
-                {extendedPackages.map((pkg, idx) => (
-                  <div key={`${pkg.id}-${idx}`} className="carousel-item">
-                    <article className="package-card">
-                      <img src={pkg.image} alt={pkg.title} width="480" height="384" loading="lazy" />
-                      <div className="package-card-body">
-                        <div className="pkg-card-head">
-                          <h3>{pkg.title}</h3>
-                          <p className="meta">{pkg.duration}</p>
+                {extendedPackages.map((pkg, idx) => {
+                  const isActive = idx === carouselIdx;
+                  return (
+                    <div 
+                      key={`${pkg.id}-${idx}`} 
+                      className="carousel-item"
+                      style={{
+                        opacity: isActive ? 1 : 0.45,
+                        filter: isActive ? 'none' : 'blur(2.5px)',
+                        transform: isActive ? 'scale(1)' : 'scale(0.92)',
+                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      }}
+                    >
+                      <article className="package-card">
+                        <img src={pkg.image} alt={pkg.title} width="480" height="384" loading="lazy" />
+                        <div className="package-card-body">
+                          <div className="pkg-card-head">
+                            <h3>{pkg.title}</h3>
+                            <p className="meta">{pkg.duration}</p>
+                          </div>
+                          <p className="pkg-overview">{pkg.overview}</p>
+                          <div className="pkg-card-foot">
+                            <Link href={`/packages/${pkg.id}`} className="link-details">View Details</Link>
+                            <Link
+                              className="btn btn-primary btn-sm"
+                              href={`https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(pkg.title)}%20package.`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Book now
+                            </Link>
+                          </div>
                         </div>
-                        <p className="pkg-overview">{pkg.overview}</p>
-                        <div className="pkg-card-foot">
-                          <Link href={`/packages/${pkg.id}`} className="link-details">View Details</Link>
-                          <Link
-                            className="btn btn-primary btn-sm"
-                            href={`https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(pkg.title)}%20package.`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Book now
-                          </Link>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                ))}
+                      </article>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
