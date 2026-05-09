@@ -309,7 +309,7 @@ export default function Home() {
                       <h3 className="font-bold text-lg text-ink">Explore Full Day-by-Day Itinerary</h3>
                       <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
                     </div>
-                    <span 
+                    <span
                       className="text-xs font-bold px-3 py-1.5 rounded-full"
                       style={{ backgroundColor: "rgba(30, 92, 74, 0.1)", color: "var(--accent)" }}
                     >
@@ -325,8 +325,8 @@ export default function Home() {
                           key={day.day}
                           onClick={() => setActiveDayIdx(idx)}
                           className={`w-11 h-11 rounded-full font-bold text-[14px] flex items-center justify-center transition-all duration-300 shrink-0 cursor-pointer ${activeDayIdx === idx
-                              ? 'scale-110 shadow-md shadow-accent/20'
-                              : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
+                            ? 'scale-110 shadow-md shadow-accent/20'
+                            : 'bg-warm/40 text-muted hover:bg-warm-dark/25 hover:text-ink'
                             }`}
                           style={{
                             backgroundColor: activeDayIdx === idx ? "var(--accent)" : "",
@@ -343,7 +343,7 @@ export default function Home() {
                   {/* Day Content Card with smooth transition */}
                   <div className="min-h-[170px] bg-warm/15 rounded-2xl p-5 md:p-6 border border-warm-dark/5 relative overflow-hidden transition-all duration-300">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
-                      <span 
+                      <span
                         className="text-[13px] font-bold tracking-widest uppercase block"
                         style={{ color: "var(--accent)" }}
                       >
@@ -371,7 +371,7 @@ export default function Home() {
                   <div className="w-full h-1.5 bg-warm rounded-full overflow-hidden">
                     <div
                       className="h-full transition-all duration-500 ease-out"
-                      style={{ 
+                      style={{
                         width: `${((activeDayIdx + 1) / 14) * 100}%`,
                         backgroundColor: "var(--accent)"
                       }}
@@ -383,8 +383,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section overflow-hidden !pb-0 pt-4 md:pt-8">
-          <div className="carousel-outer">
+        <section className="section overflow-hidden !pb-0 pt-4 md:pt-8 !px-0">
+          <div className="carousel-outer" style={{ maxWidth: 'none', width: '100%' }}>
             <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
               <ChevronLeft size={24} />
             </button>
@@ -406,41 +406,150 @@ export default function Home() {
               <div
                 className="carousel-track"
                 style={{
-                  transform: `translateX(-${carouselIdx * (isMobile ? 100 : 33.333)}%)`,
+                  transform: isMobile
+                    ? `translateX(calc(10% - ${carouselIdx * 80}%))`
+                    : `translateX(calc(6% - ${carouselIdx * 22}%))`,
                   transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
                 }}
               >
-                {extendedPackages.map((pkg, idx) => (
-                  <div key={`${pkg.id}-${idx}`} className="carousel-item">
-                    <article className="package-card">
-                      <img src={pkg.image} alt={pkg.title} width="480" height="384" loading="lazy" />
-                      <div className="package-card-body">
-                        <div className="pkg-card-head">
-                          <h3>{pkg.title}</h3>
-                          <p className="meta">{pkg.duration}</p>
+                {extendedPackages.map((pkg, idx) => {
+                  const isActive = isMobile
+                    ? idx === carouselIdx
+                    : (idx >= carouselIdx && idx <= carouselIdx + 3);
+                  return (
+                    <div
+                      key={`${pkg.id}-${idx}`}
+                      className="carousel-item"
+                      style={{
+                        flex: isMobile ? '0 0 80%' : '0 0 22%',
+                        width: isMobile ? '80%' : '22%',
+                        opacity: isActive ? 1 : 0.45,
+                        filter: isActive ? 'none' : 'blur(2.5px)',
+                        transform: isActive ? 'scale(1)' : 'scale(0.92)',
+                        transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                      }}
+                    >
+                      <article className="package-card">
+                        <img src={pkg.image} alt={pkg.title} width="480" height="384" loading="lazy" />
+                        <div className="package-card-body">
+                          <div className="pkg-card-head">
+                            <h3>{pkg.title}</h3>
+                            <p className="meta">{pkg.duration}</p>
+                          </div>
+                          <p className="pkg-overview">{pkg.overview}</p>
+                          <div className="pkg-card-foot">
+                            <Link href={`/packages/${pkg.id}`} className="link-details">View Details</Link>
+                            <Link
+                              className="btn btn-primary btn-sm"
+                              href={`https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(pkg.title)}%20package.`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Book now
+                            </Link>
+                          </div>
                         </div>
-                        <p className="pkg-overview">{pkg.overview}</p>
-                        <div className="pkg-card-foot">
-                          <Link href={`/packages/${pkg.id}`} className="link-details">View Details</Link>
-                          <Link
-                            className="btn btn-primary btn-sm"
-                            href={`https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20the%20${encodeURIComponent(pkg.title)}%20package.`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Book now
-                          </Link>
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-                ))}
+                      </article>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '0.5rem' }}>
             <Link className="link-arrow" href="/packages">View all packages →</Link>
+          </div>
+        </section>
+
+        {/* ——— Jammu to Katra Connectivity & Transport Guide (SEO Target Keywords) ——— */}
+        <section className="section" aria-labelledby="guide-heading" style={{ padding: '4rem 1.25rem', borderTop: '1px solid var(--line)' }}>
+          <div className="container max-w-[1100px] mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+              {/* Left Side: Interactive Transport Details */}
+              <div className="lg:col-span-5 bg-white rounded-3xl p-6 md:p-8 border border-black/5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <p className="section-kicker" style={{ justifyContent: 'flex-start' }}>Route &amp; Commute Hub</p>
+                  <h2 className="section-title text-[2rem] lg:text-[2.2rem]" id="guide-heading" style={{ lineHeight: '1.15', textAlign: 'left', marginLeft: 0 }}>
+                    Jammu to Katra Expressway &amp; Cab Portal
+                  </h2>
+                  <p className="text-muted text-[15px] leading-relaxed">
+                    Plan your journey <strong>to katra</strong> seamlessly. Whether you are coming via train, flight, or driving down the highway, we provide verified information to make your road trip completely sorted.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-6">
+                  <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#faf8f5] border border-black/[0.03] hover:border-accent/15 hover:bg-[#f6f3ed] transition-all duration-300">
+                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0" style={{ color: "var(--accent)" }}>
+                      <Compass size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-ink text-[15px]">NH-44 Expressway Route</h4>
+                      <p className="text-xs text-muted leading-relaxed mt-0.5">
+                        Drive down the scenic <strong>jammu katra road</strong>, part of the major <strong>katra jammu highway</strong> network.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3.5 p-4 rounded-2xl bg-[#faf8f5] border border-black/[0.03] hover:border-accent/15 hover:bg-[#f6f3ed] transition-all duration-300">
+                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0" style={{ color: "var(--accent)" }}>
+                      <Mountain size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-ink text-[15px]">Upcoming Expressways</h4>
+                      <p className="text-xs text-muted leading-relaxed mt-0.5">
+                        The highly anticipated <strong>jammu katra express road</strong> corridor will soon cut down commute times to under 1 hour.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Side: Organic Keyword Copy & Contact Widget */}
+              <div className="lg:col-span-7 bg-white rounded-3xl p-6 md:p-8 border border-black/5 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1 flex flex-col justify-between">
+                <div className="space-y-4 text-muted text-[15px] leading-relaxed">
+                  <p>
+                    For travelers looking for a hassle-free transition, booking a reliable <strong>katra taxi service</strong> or a clean local <strong>katra cab service</strong> is highly recommended. Katra Travels is recognized as one of the top-rated <strong>travel agents in katra</strong> and a leading local <strong>travel agent in katra</strong>.
+                  </p>
+                  <p>
+                    As a verified <strong>travel agency in katra</strong>, we manage end-to-end transfers from Jammu Airport or Railway Station. Save our direct <strong>katra travel agency contact number</strong> to instantly book your highway commute, secure luxury cabs, or custom plan local sightseeing tours.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-black/5 text-ink">
+                    <div className="p-4 rounded-xl bg-[#faf8f5] border border-black/[0.02]">
+                      <span className="text-[11px] uppercase tracking-wider text-muted block mb-1">Direct Taxi Bookings</span>
+                      <span className="font-bold text-[14px]">Jammu - Katra Cab Service</span>
+                    </div>
+                    <div className="p-4 rounded-xl bg-[#faf8f5] border border-black/[0.02]">
+                      <span className="text-[11px] uppercase tracking-wider text-muted block mb-1">Help Desk &amp; Support</span>
+                      <a href="tel:9906130577" className="font-bold text-[14px] hover:underline" style={{ color: "var(--accent)" }}>
+                        +91 99061 30577
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-black/5 mt-6">
+                  <Link
+                    className="btn btn-sm text-xs font-bold py-3 px-6 rounded-xl cursor-pointer shadow-sm hover:shadow transition-all duration-300"
+                    style={{ backgroundColor: "var(--accent)", color: "#fff" }}
+                    href="https://wa.me/919906130577?text=Hi%20Katra%20Travels%2C%20I%27d%20like%20to%20book%20a%20taxi%20service%20from%20Jammu%20to%20Katra."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Book Taxi Service
+                  </Link>
+                  <a
+                    className="btn btn-outline btn-sm text-xs font-bold py-3 px-6 rounded-xl cursor-pointer hover:bg-black/5 transition-all duration-300"
+                    href="tel:9906130577"
+                  >
+                    Call Agency Team
+                  </a>
+                </div>
+              </div>
+
+            </div>
           </div>
         </section>
 
