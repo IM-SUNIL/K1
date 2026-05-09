@@ -2452,8 +2452,8 @@ details[open] .faq-summary::after {
 
 @media (min-width: 768px) {
   .carousel-item {
-    flex: 0 0 50%;
-    padding: 0 1rem;
+    flex: 0 0 28%;
+    padding: 0 0.75rem;
   }
 }
 

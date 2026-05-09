@@ -406,17 +406,19 @@ export default function Home() {
               <div
                 className="carousel-track"
                 style={{
-                  transform: isMobile
+                  transform: isMobile 
                     ? `translateX(calc(10% - ${carouselIdx * 80}%))`
-                    : `translateX(calc(25% - ${carouselIdx * 50}%))`,
+                    : `translateX(calc(8% - ${carouselIdx * 28}%))`,
                   transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
                 }}
               >
                 {extendedPackages.map((pkg, idx) => {
-                  const isActive = idx === carouselIdx;
+                  const isActive = isMobile
+                    ? idx === carouselIdx
+                    : (idx >= carouselIdx && idx <= carouselIdx + 2);
                   return (
-                    <div
-                      key={`${pkg.id}-${idx}`}
+                    <div 
+                      key={`${pkg.id}-${idx}`} 
                       className="carousel-item"
                       style={{
                         opacity: isActive ? 1 : 0.45,
