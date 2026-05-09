@@ -408,7 +408,7 @@ export default function Home() {
                 style={{
                   transform: isMobile 
                     ? `translateX(calc(10% - ${carouselIdx * 80}%))`
-                    : `translateX(calc(8% - ${carouselIdx * 28}%))`,
+                    : `translateX(calc(5% - ${carouselIdx * 30}%))`,
                   transition: isTransitioning ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none'
                 }}
               >
@@ -421,9 +421,9 @@ export default function Home() {
                       key={`${pkg.id}-${idx}`} 
                       className="carousel-item"
                       style={{
-                        opacity: isActive ? 1 : 0.45,
-                        filter: isActive ? 'none' : 'blur(2.5px)',
-                        transform: isActive ? 'scale(1)' : 'scale(0.92)',
+                        opacity: isActive ? 1 : 0.35,
+                        filter: isActive ? 'none' : (isMobile ? 'blur(3px)' : 'blur(4.5px)'),
+                        transform: isActive ? 'scale(1)' : (isMobile ? 'scale(0.9)' : 'scale(0.85)'),
                         transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
                       }}
                     >
