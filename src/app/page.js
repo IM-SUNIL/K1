@@ -229,7 +229,7 @@ export default function Home() {
 
         {/* ——— Flagship Featured Package (Overland Grand Tour) ——— */}
         <section className="section bg-warm/15 !py-8 md:!py-16" aria-labelledby="flagship-heading">
-          <div className="container max-w-[1200px] mx-auto px-4">
+          <div className="container max-w-[1200px] mx-auto">
             <div className="section-head text-center mb-8 md:mb-12">
               <span className="section-kicker">🏆 Flagship Experience</span>
               <h2 className="section-title text-[2rem] md:text-[3.2rem]" id="flagship-heading" style={{ lineHeight: '1.1' }}>
