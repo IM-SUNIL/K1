@@ -530,7 +530,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-black/5 mt-6">
+                <div className="hidden sm:flex flex-wrap items-center gap-3 pt-6 border-t border-black/5 mt-6">
                   <Link
                     className="btn btn-sm text-xs font-bold py-3 px-6 rounded-xl cursor-pointer shadow-sm hover:shadow transition-all duration-300"
                     style={{ backgroundColor: "var(--accent)", color: "#fff" }}
