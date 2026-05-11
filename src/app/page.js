@@ -403,9 +403,7 @@ export default function Home() {
           <div className="container max-w-[1200px] mx-auto px-4 text-center mb-8">
             <span className="section-kicker">💼 Choose Your Vibe</span>
             <h3 className="text-2xl md:text-3xl font-bold text-ink mb-3">Find Your Perfect Vacation</h3>
-            <p className="text-muted text-xs md:text-sm max-w-[500px] mx-auto mb-6">
-              Filter our premium curated tour packages by your favorite travel style.
-            </p>
+
 
             {/* Aesthetic Dynamic Tabs */}
             <div className="flex flex-wrap justify-center gap-2 md:gap-3">
