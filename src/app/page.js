@@ -310,7 +310,7 @@ export default function Home() {
                       <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
                     </div>
                     <span
-                      className="text-xs font-bold px-3 py-1.5 rounded-full"
+                      className="hidden sm:inline-block text-xs font-bold px-3 py-1.5 rounded-full shrink-0"
                       style={{ backgroundColor: "rgba(30, 92, 74, 0.1)", color: "var(--accent)" }}
                     >
                       Interactive Map
