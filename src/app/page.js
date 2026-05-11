@@ -59,6 +59,7 @@ export default function Home() {
   const [carouselIdx, setCarouselIdx] = useState(featuredPackages.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [activeDayIdx, setActiveDayIdx] = useState(0);
+  const [showRouteModal, setShowRouteModal] = useState(false);
 
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
@@ -229,7 +230,7 @@ export default function Home() {
 
         {/* ——— Flagship Featured Package (Overland Grand Tour) ——— */}
         <section className="section bg-warm/15 !py-8 md:!py-16" aria-labelledby="flagship-heading">
-          <div className="container max-w-[1200px] mx-auto px-4">
+          <div className="container max-w-[1200px] mx-auto">
             <div className="section-head text-center mb-8 md:mb-12">
               <span className="section-kicker">🏆 Flagship Experience</span>
               <h2 className="section-title text-[2rem] md:text-[3.2rem]" id="flagship-heading" style={{ lineHeight: '1.1' }}>
@@ -310,7 +311,7 @@ export default function Home() {
                       <p className="text-[13px] text-muted">Click any day below to view highlights of the route</p>
                     </div>
                     <span
-                      className="text-xs font-bold px-3 py-1.5 rounded-full"
+                      className="hidden sm:inline-block text-xs font-bold px-3 py-1.5 rounded-full shrink-0"
                       style={{ backgroundColor: "rgba(30, 92, 74, 0.1)", color: "var(--accent)" }}
                     >
                       Interactive Map
@@ -477,6 +478,13 @@ export default function Home() {
                   <p className="text-muted text-[15px] leading-relaxed">
                     Plan your journey <strong>to katra</strong> seamlessly. Whether you are coming via train, flight, or driving down the highway, we provide verified information to make your road trip completely sorted.
                   </p>
+                  <button 
+                    onClick={() => setShowRouteModal(true)}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold mt-1.5 hover:underline cursor-pointer"
+                    style={{ color: 'var(--accent)' }}
+                  >
+                    <span>🗺️ View Route Map Brochure</span>
+                  </button>
                 </div>
 
                 <div className="space-y-4 mt-6">
@@ -528,9 +536,24 @@ export default function Home() {
                       </a>
                     </div>
                   </div>
+
+                  <div className="grid grid-cols-3 gap-2.5 pt-4 border-t border-black/5 text-ink">
+                    <div className="bg-[#faf8f5] p-3 rounded-xl border border-black/[0.02] text-center hover:border-accent/10 hover:bg-[#f6f3ed] transition-all duration-300">
+                      <span className="font-bold text-[13px] block">Toyota Crysta</span>
+                      <span className="text-[10px] text-muted block mt-0.5">Premium SUV</span>
+                    </div>
+                    <div className="bg-[#faf8f5] p-3 rounded-xl border border-black/[0.02] text-center hover:border-accent/10 hover:bg-[#f6f3ed] transition-all duration-300">
+                      <span className="font-bold text-[13px] block">Tempo Traveller</span>
+                      <span className="text-[10px] text-muted block mt-0.5">Luxury Group</span>
+                    </div>
+                    <div className="bg-[#faf8f5] p-3 rounded-xl border border-black/[0.02] text-center hover:border-accent/10 hover:bg-[#f6f3ed] transition-all duration-300">
+                      <span className="font-bold text-[13px] block">Toyota Etios</span>
+                      <span className="text-[10px] text-muted block mt-0.5">Budget Sedan</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-6 border-t border-black/5 mt-6">
+                <div className="hidden sm:flex flex-wrap items-center gap-3 pt-6 border-t border-black/5 mt-6">
                   <Link
                     className="btn btn-sm text-xs font-bold py-3 px-6 rounded-xl cursor-pointer shadow-sm hover:shadow transition-all duration-300"
                     style={{ backgroundColor: "var(--accent)", color: "#fff" }}
@@ -861,6 +884,70 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencySchema) }}
       />
+      {showRouteModal && (
+        <div 
+          onClick={() => setShowRouteModal(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            zIndex: 1000,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backdropFilter: 'blur(8px)',
+            padding: '1.5rem',
+          }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'relative',
+              backgroundColor: '#fff',
+              borderRadius: '24px',
+              maxWidth: '650px',
+              width: '100%',
+              padding: '1.5rem',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+            }}
+          >
+            <button 
+              onClick={() => setShowRouteModal(false)}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                right: '1rem',
+                border: 'none',
+                background: 'rgba(0,0,0,0.05)',
+                borderRadius: '50%',
+                width: '32px',
+                height: '32px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              ✕
+            </button>
+            <h3 className="font-bold text-lg text-ink mb-4 pr-6">Our Official Highway Route Map</h3>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--line)', height: '400px' }}>
+              <img 
+                src="/images/flyers/route_map_flyer.jpg" 
+                alt="Katra Travels Route Map"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#f9f9f9' }}
+              />
+            </div>
+            <p className="text-xs text-muted mt-3 text-center">
+              Our official tourist circuit routes. Call or WhatsApp <strong>+91 99061 30577</strong> to book.
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 }
