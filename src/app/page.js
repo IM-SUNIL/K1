@@ -53,10 +53,19 @@ export default function Home() {
 
 
   const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
-  const featuredPackages = Object.values(packages);
+  const [activeTab, setActiveTab] = useState("all");
+
+  const filteredPackages = Object.values(packages).filter(pkg => {
+    if (activeTab === "all") return true;
+    if (activeTab === "himalayan") return ["kashmir-escape", "himachal-circuit", "ladakh-adventure", "uttarakhand-hills"].includes(pkg.id);
+    if (activeTab === "divine") return ["vaishno-devi-yatra", "vrindavan-mathura-agra"].includes(pkg.id);
+    if (activeTab === "heritage") return ["rajasthan-heritage", "delhi-tour", "north-india-circuit"].includes(pkg.id);
+    return true;
+  });
+
   const flagshipPkg = packages["north-india-circuit"];
-  const extendedPackages = [...featuredPackages, ...featuredPackages, ...featuredPackages];
-  const [carouselIdx, setCarouselIdx] = useState(featuredPackages.length);
+  const extendedPackages = [...filteredPackages, ...filteredPackages, ...filteredPackages];
+  const [carouselIdx, setCarouselIdx] = useState(filteredPackages.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [activeDayIdx, setActiveDayIdx] = useState(0);
   const [showRouteModal, setShowRouteModal] = useState(false);
@@ -139,7 +148,7 @@ export default function Home() {
       nextCarousel();
     }, 5000);
     return () => clearInterval(timer);
-  }, [featuredPackages.length]);
+  }, [filteredPackages.length]);
 
   const nextCarousel = () => {
     setIsTransitioning(true);
@@ -158,23 +167,29 @@ export default function Home() {
     }
   }, [isTransitioning]);
 
+  // Reset Carousel Index when filter tab changes
+  useEffect(() => {
+    setIsTransitioning(false);
+    setCarouselIdx(filteredPackages.length);
+  }, [filteredPackages.length]);
+
   useEffect(() => {
     // Jump back to middle set for infinite loop
-    if (carouselIdx >= featuredPackages.length * 2) {
+    if (carouselIdx >= filteredPackages.length * 2) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
-        setCarouselIdx(featuredPackages.length);
+        setCarouselIdx(filteredPackages.length);
       }, 600);
       return () => clearTimeout(timer);
     }
-    if (carouselIdx < featuredPackages.length) {
+    if (carouselIdx < filteredPackages.length) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
-        setCarouselIdx(featuredPackages.length * 2 - 1);
+        setCarouselIdx(filteredPackages.length * 2 - 1);
       }, 600);
       return () => clearTimeout(timer);
     }
-  }, [carouselIdx, featuredPackages.length]);
+  }, [carouselIdx, filteredPackages.length]);
 
   const getImgPath = (img) => {
     return isMobile ? `/images/mobile/${img}` : `/images/laptop/${img}`;
@@ -384,7 +399,42 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section overflow-hidden !pb-0 pt-4 md:pt-8 !px-0">
+        <section className="section overflow-hidden !pb-0 pt-8 md:pt-12 !px-0" aria-label="Tour Packages">
+          <div className="container max-w-[1200px] mx-auto px-4 text-center mb-8">
+            <span className="section-kicker">💼 Choose Your Vibe</span>
+            <h3 className="text-2xl md:text-3xl font-bold text-ink mb-3">Find Your Perfect Vacation</h3>
+            <p className="text-muted text-xs md:text-sm max-w-[500px] mx-auto mb-6">
+              Filter our premium curated tour packages by your favorite travel style.
+            </p>
+
+            {/* Aesthetic Dynamic Tabs */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+              {[
+                { id: 'all', label: '✨ All Vacations' },
+                { id: 'himalayan', label: '🏔️ Himalayan Escapes' },
+                { id: 'divine', label: '🕉️ Divine Yatras' },
+                { id: 'heritage', label: '🏰 Heritage & Getaways' }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2 rounded-full font-bold text-xs md:text-sm cursor-pointer border transition-all duration-300 ${
+                    activeTab === tab.id
+                      ? 'shadow-md shadow-accent/15 scale-105'
+                      : 'bg-white hover:bg-[#fcfbf9]'
+                  }`}
+                  style={{
+                    backgroundColor: activeTab === tab.id ? 'var(--accent)' : '#ffffff',
+                    color: activeTab === tab.id ? '#ffffff' : 'var(--muted)',
+                    borderColor: activeTab === tab.id ? 'var(--accent)' : 'rgba(0,0,0,0.08)'
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="carousel-outer" style={{ maxWidth: 'none', width: '100%' }}>
             <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
               <ChevronLeft size={24} />
