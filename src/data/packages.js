@@ -1,22 +1,22 @@
 export const packages = {
   "kashmir-escape": {
     id: "kashmir-escape",
-    title: "Kashmir Tour",
+    title: "6-Day Majestic Kashmir Tour Package",
     duration: "5 nights / 6 days",
     image: "/images/packages/kashmir.jpg",
-    overview: "Experience the breathtaking beauty of Kashmir, often called Paradise on Earth. Enjoy serene Shikara rides, majestic alpine mountains, and lush green valleys.",
-    includes: ["Hotel", "Cab", "Breakfast & Dinner", "Shikara Ride", "Toll & Parking"],
+    overview: "Experience the breathtaking beauty of Kashmir with our premium 6-day tour starting from Katra. From serene Shikara rides on Dal Lake and majestic gondola rides in Gulmarg to the spectacular valleys of Sonamarg and Pahalgam, this is a fully sorted journey of a lifetime.",
+    includes: ["Hotel Stay", "Luxury Cabs", "Breakfast & Dinner", "Shikara Ride", "Sightseeing Trips", "Toll & Parking Included"],
     itinerary: [
-      { day: "Day 1", title: "Arrival in Srinagar", description: "Arrive at Srinagar airport. Meet our representative and transfer to your houseboat. Evening Shikara ride on Dal Lake. Overnight stay at houseboat." },
-      { day: "Day 2", title: "Srinagar to Gulmarg", description: "Drive to Gulmarg. Enjoy the Gondola ride (cable car) to Apharwat peak. Experience the snowy peaks and green meadows. Return to Srinagar hotel." },
-      { day: "Day 3", title: "Srinagar to Pahalgam", description: "Travel to Pahalgam via Pampore saffron fields. Enjoy the scenic beauty of the Lidder Valley. Visit Betaab Valley and Aru Valley. Overnight stay in Pahalgam." },
-      { day: "Day 4", title: "Pahalgam to Srinagar", description: "Return to Srinagar. Visit the famous Mughal Gardens: Nishat Bagh and Shalimar Bagh. Explore local markets." },
-      { day: "Day 5", title: "Sonamarg Excursion", description: "Full day excursion to Sonamarg (Meadow of Gold). Enjoy the scenic drive and view the Thajiwas Glacier. Return to Srinagar for overnight stay." },
-      { day: "Day 6", title: "Departure", description: "After breakfast, transfer to Srinagar airport for your onward journey." }
+      { day: "Day 1", title: "Katra to Srinagar (Check-In & Rest)", description: "Depart from Katra and drive to Srinagar. On arrival, check into your premium Srinagar hotel or houseboat. Rest and enjoy a relaxed evening by the lakes." },
+      { day: "Day 2", title: "Srinagar Local Sightseeing", description: "Enjoy a dreamy Shikara ride on the famous Dal Lake. Visit the world-renowned Mughal Gardens (Nishat Bagh & Shalimar Bagh), the scenic Pari Mahal, and the historical Shiv Temple." },
+      { day: "Day 3", title: "Gulmarg Tour (Snow-capped Peaks & Gondola)", description: "Embark on a day excursion to Gulmarg. Experience the thrill of the famous Gondola ride (cable car) to the snow-capped mountains of Apharwat Peak." },
+      { day: "Day 4", title: "Sonamarg Valley Tour", description: "Excursion to Sonamarg (Meadow of Gold). Walk along the spectacular high-altitude glaciers, take beautiful photo points, and explore the golden alpine meadows." },
+      { day: "Day 5", title: "Pahalgam Tour (Betaab Valley & Lidder River)", description: "Journey to Pahalgam. Explore the majestic Betaab Valley, Aru Valley, and the refreshing pine-bordered banks of the Lidder River." },
+      { day: "Day 6", title: "Kheer Bhawani Temple Visit & Return", description: "Pay a spiritual visit to the sacred Kheer Bhawani Temple for peaceful blessings. Afterwards, return comfortably to Katra for your departure." }
     ],
     stay: [
-      "Srinagar: Premium Houseboat / 3-Star Hotel",
-      "Pahalgam: 3-Star Mountain Resort"
+      "Srinagar: Premium Lakefront Houseboat / 3-Star Hotel",
+      "Pahalgam: Luxury Riverside Resort"
     ]
   },
   "himachal-circuit": {
