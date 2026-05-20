@@ -764,6 +764,13 @@ export default function Home() {
                 </div>
                 <h3>Horse Riding</h3>
               </div>
+              <div className="activity-card">
+                <div className="activity-image-wrap">
+                  <img src="images/activities/paragliding.png" alt="Paragliding" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
+                  <span className="activity-badge">12 Trips</span>
+                </div>
+                <h3>Paragliding</h3>
+              </div>
             </div>
           </div>
         </section>
