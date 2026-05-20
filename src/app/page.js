@@ -771,7 +771,7 @@ export default function Home() {
           <div className="highlights">
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-value.jpg" alt="Mountain vista at golden hour" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p2.jpeg" alt="Mountain vista at golden hour" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Value-first pricing</h3>
@@ -780,7 +780,7 @@ export default function Home() {
             </article>
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-trust.jpg" alt="Travellers on a scenic journey" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p3.jpeg" alt="Travellers on a scenic journey" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Trusted on the ground</h3>
@@ -789,7 +789,7 @@ export default function Home() {
             </article>
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-stay.jpg" alt="Boutique hotel pool and architecture" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p4.jpeg" alt="Boutique hotel pool and architecture" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Comfortable stays</h3>
@@ -798,7 +798,7 @@ export default function Home() {
             </article>
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-support.jpg" alt="Sunrise over mountains" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p5.jpeg" alt="Sunrise over mountains" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Support when you need it</h3>
