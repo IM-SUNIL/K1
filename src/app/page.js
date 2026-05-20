@@ -53,10 +53,19 @@ export default function Home() {
 
 
   const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
-  const featuredPackages = Object.values(packages);
+  const [activeTab, setActiveTab] = useState("all");
+
+  const filteredPackages = Object.values(packages).filter(pkg => {
+    if (activeTab === "all") return true;
+    if (activeTab === "himalayan") return ["kashmir-escape", "himachal-circuit", "ladakh-adventure", "uttarakhand-hills"].includes(pkg.id);
+    if (activeTab === "divine") return ["vaishno-devi-yatra", "vrindavan-mathura-agra"].includes(pkg.id);
+    if (activeTab === "heritage") return ["rajasthan-heritage", "delhi-tour", "north-india-circuit"].includes(pkg.id);
+    return true;
+  });
+
   const flagshipPkg = packages["north-india-circuit"];
-  const extendedPackages = [...featuredPackages, ...featuredPackages, ...featuredPackages];
-  const [carouselIdx, setCarouselIdx] = useState(featuredPackages.length);
+  const extendedPackages = [...filteredPackages, ...filteredPackages, ...filteredPackages];
+  const [carouselIdx, setCarouselIdx] = useState(filteredPackages.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const [activeDayIdx, setActiveDayIdx] = useState(0);
   const [showRouteModal, setShowRouteModal] = useState(false);
@@ -139,7 +148,7 @@ export default function Home() {
       nextCarousel();
     }, 5000);
     return () => clearInterval(timer);
-  }, [featuredPackages.length]);
+  }, [filteredPackages.length]);
 
   const nextCarousel = () => {
     setIsTransitioning(true);
@@ -158,23 +167,29 @@ export default function Home() {
     }
   }, [isTransitioning]);
 
+  // Reset Carousel Index when filter tab changes
+  useEffect(() => {
+    setIsTransitioning(false);
+    setCarouselIdx(filteredPackages.length);
+  }, [filteredPackages.length]);
+
   useEffect(() => {
     // Jump back to middle set for infinite loop
-    if (carouselIdx >= featuredPackages.length * 2) {
+    if (carouselIdx >= filteredPackages.length * 2) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
-        setCarouselIdx(featuredPackages.length);
+        setCarouselIdx(filteredPackages.length);
       }, 600);
       return () => clearTimeout(timer);
     }
-    if (carouselIdx < featuredPackages.length) {
+    if (carouselIdx < filteredPackages.length) {
       const timer = setTimeout(() => {
         setIsTransitioning(false);
-        setCarouselIdx(featuredPackages.length * 2 - 1);
+        setCarouselIdx(filteredPackages.length * 2 - 1);
       }, 600);
       return () => clearTimeout(timer);
     }
-  }, [carouselIdx, featuredPackages.length]);
+  }, [carouselIdx, filteredPackages.length]);
 
   const getImgPath = (img) => {
     return isMobile ? `/images/mobile/${img}` : `/images/laptop/${img}`;
@@ -247,7 +262,7 @@ export default function Home() {
                 {/* Image Overlay Header */}
                 <div className="relative h-[220px] overflow-hidden">
                   <img
-                    src="/images/packages/north_india_circuit.jpg"
+                    src="/images/gallery/people/p1.jpeg"
                     alt="14-Day Northern India Circuit"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -384,7 +399,39 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section overflow-hidden !pb-0 pt-4 md:pt-8 !px-0">
+        <section className="section overflow-hidden !pb-0 pt-8 md:pt-12 !px-0" aria-label="Tour Packages">
+          <div className="container max-w-[1200px] mx-auto px-4 text-center mb-8">
+            <span className="section-kicker">💼 Choose Your Vibe</span>
+            <h3 className="text-2xl md:text-3xl font-bold text-ink mb-3">Find Your Perfect Vacation</h3>
+
+
+            {/* Aesthetic Dynamic Tabs */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+              {[
+                { id: 'all', label: '✨ All Vacations' },
+                { id: 'himalayan', label: '🏔️ Himalayan Escapes' },
+                { id: 'divine', label: '🕉️ Divine Yatras' },
+                { id: 'heritage', label: '🏰 Heritage & Getaways' }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`px-4 py-2 rounded-full font-bold text-xs md:text-sm cursor-pointer border transition-all duration-300 ${activeTab === tab.id
+                      ? 'shadow-md shadow-accent/15 scale-105'
+                      : 'bg-white hover:bg-[#fcfbf9]'
+                    }`}
+                  style={{
+                    backgroundColor: activeTab === tab.id ? 'var(--accent)' : '#ffffff',
+                    color: activeTab === tab.id ? '#ffffff' : 'var(--muted)',
+                    borderColor: activeTab === tab.id ? 'var(--accent)' : 'rgba(0,0,0,0.08)'
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="carousel-outer" style={{ maxWidth: 'none', width: '100%' }}>
             <button onClick={prevCarousel} className="carousel-side-btn left" aria-label="Previous itinerary">
               <ChevronLeft size={24} />
@@ -464,7 +511,7 @@ export default function Home() {
         </section>
 
         {/* ——— Jammu to Katra Connectivity & Transport Guide (SEO Target Keywords) ——— */}
-        <section className="section" aria-labelledby="guide-heading" style={{ padding: '4rem 1.25rem', borderTop: '1px solid var(--line)' }}>
+        <section className="section" aria-labelledby="guide-heading" style={{ padding: '1rem 1.25rem', borderTop: '1px solid var(--line)' }}>
           <div className="container max-w-[1100px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
@@ -478,7 +525,7 @@ export default function Home() {
                   <p className="text-muted text-[15px] leading-relaxed">
                     Plan your journey <strong>to katra</strong> seamlessly. Whether you are coming via train, flight, or driving down the highway, we provide verified information to make your road trip completely sorted.
                   </p>
-                  <button 
+                  <button
                     onClick={() => setShowRouteModal(true)}
                     className="inline-flex items-center gap-1.5 text-xs font-bold mt-1.5 hover:underline cursor-pointer"
                     style={{ color: 'var(--accent)' }}
@@ -680,35 +727,49 @@ export default function Home() {
               <h2 className="section-title">Trending Activities ⚡</h2>
             </div>
           </div>
-          <div className="scroll-row-wrap">
-            <div className="scroll-row">
-              <div className="activity-card">
+          <div className="container max-w-[1200px] mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 justify-center items-start">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
-                  <img src="images/activities/biking.png" alt="Biking" width="280" height="280" loading="lazy" />
+                  <img src="images/activities/biking.png" alt="Biking" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">6 Trips</span>
                 </div>
-                <h3>Biking</h3>
+                <h3 style={{ textAlign: 'center' }}>Biking</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
-                  <img src="images/activities/boating.png" alt="Boating" width="280" height="280" loading="lazy" />
+                  <img src="images/activities/boating.png" alt="Boating" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">3 Trips</span>
                 </div>
-                <h3>Boating</h3>
+                <h3 style={{ textAlign: 'center' }}>Boating</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
-                  <img src="images/activities/camping.png" alt="Camping" width="280" height="280" loading="lazy" />
+                  <img src="images/activities/camping.png" alt="Camping" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">10 Trips</span>
                 </div>
-                <h3>Camping</h3>
+                <h3 style={{ textAlign: 'center' }}>Camping</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
-                  <img src="images/activities/dinner.png" alt="Candlelight Dinner" width="280" height="280" loading="lazy" />
-                  <span className="activity-badge">4 Trips</span>
+                  <img src="images/activities/rafting.png" alt="River Rafting" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
+                  <span className="activity-badge">5 Trips</span>
                 </div>
-                <h3>Candlelight Dinner</h3>
+                <h3 style={{ textAlign: 'center' }}>River Rafting</h3>
+              </div>
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
+                <div className="activity-image-wrap">
+                  <img src="images/activities/horse_riding.png" alt="Horse Riding" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
+                  <span className="activity-badge">8 Trips</span>
+                </div>
+                <h3 style={{ textAlign: 'center' }}>Horse Riding</h3>
+              </div>
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
+                <div className="activity-image-wrap">
+                  <img src="images/activities/paragliding.png" alt="Paragliding" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
+                  <span className="activity-badge">12 Trips</span>
+                </div>
+                <h3 style={{ textAlign: 'center' }}>Paragliding</h3>
               </div>
             </div>
           </div>
@@ -724,7 +785,7 @@ export default function Home() {
           <div className="highlights">
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-value.jpg" alt="Mountain vista at golden hour" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p2.jpeg" alt="Mountain vista at golden hour" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Value-first pricing</h3>
@@ -733,7 +794,7 @@ export default function Home() {
             </article>
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-trust.jpg" alt="Travellers on a scenic journey" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p3.jpeg" alt="Travellers on a scenic journey" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Trusted on the ground</h3>
@@ -742,7 +803,7 @@ export default function Home() {
             </article>
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-stay.jpg" alt="Boutique hotel pool and architecture" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p4.jpeg" alt="Boutique hotel pool and architecture" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Comfortable stays</h3>
@@ -751,7 +812,7 @@ export default function Home() {
             </article>
             <article className="highlight-card">
               <div className="highlight-photo">
-                <img src="images/hl-support.jpg" alt="Sunrise over mountains" width="400" height="300" loading="lazy" />
+                <img src="/images/flyers/p5.jpeg" alt="Sunrise over mountains" width="400" height="300" loading="lazy" />
               </div>
               <div className="highlight-body">
                 <h3>Support when you need it</h3>
@@ -885,7 +946,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencySchema) }}
       />
       {showRouteModal && (
-        <div 
+        <div
           onClick={() => setShowRouteModal(false)}
           style={{
             position: 'fixed',
@@ -902,7 +963,7 @@ export default function Home() {
             padding: '1.5rem',
           }}
         >
-          <div 
+          <div
             onClick={(e) => e.stopPropagation()}
             style={{
               position: 'relative',
@@ -914,7 +975,7 @@ export default function Home() {
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
             }}
           >
-            <button 
+            <button
               onClick={() => setShowRouteModal(false)}
               style={{
                 position: 'absolute',
@@ -936,8 +997,8 @@ export default function Home() {
             </button>
             <h3 className="font-bold text-lg text-ink mb-4 pr-6">Our Official Highway Route Map</h3>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--line)', height: '400px' }}>
-              <img 
-                src="/images/flyers/route_map_flyer.jpg" 
+              <img
+                src="/images/flyers/route_map_flyer.jpg"
                 alt="Katra Travels Route Map"
                 style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#f9f9f9' }}
               />
