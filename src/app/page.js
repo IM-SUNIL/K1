@@ -727,49 +727,49 @@ export default function Home() {
               <h2 className="section-title">Trending Activities ⚡</h2>
             </div>
           </div>
-          <div className="scroll-row-wrap">
-            <div className="scroll-row" style={{ justifyContent: 'center', flexWrap: 'nowrap' }}>
-              <div className="activity-card">
+          <div className="container max-w-[1200px] mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 justify-center items-start">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
-                  <img src="images/activities/biking.png" alt="Biking" width="280" height="280" loading="lazy" />
+                  <img src="images/activities/biking.png" alt="Biking" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">6 Trips</span>
                 </div>
-                <h3>Biking</h3>
+                <h3 style={{ textAlign: 'center' }}>Biking</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
-                  <img src="images/activities/boating.png" alt="Boating" width="280" height="280" loading="lazy" />
+                  <img src="images/activities/boating.png" alt="Boating" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">3 Trips</span>
                 </div>
-                <h3>Boating</h3>
+                <h3 style={{ textAlign: 'center' }}>Boating</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
-                  <img src="images/activities/camping.png" alt="Camping" width="280" height="280" loading="lazy" />
+                  <img src="images/activities/camping.png" alt="Camping" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">10 Trips</span>
                 </div>
-                <h3>Camping</h3>
+                <h3 style={{ textAlign: 'center' }}>Camping</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
                   <img src="images/activities/rafting.png" alt="River Rafting" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">5 Trips</span>
                 </div>
-                <h3>River Rafting</h3>
+                <h3 style={{ textAlign: 'center' }}>River Rafting</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
                   <img src="images/activities/horse_riding.png" alt="Horse Riding" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">8 Trips</span>
                 </div>
-                <h3>Horse Riding</h3>
+                <h3 style={{ textAlign: 'center' }}>Horse Riding</h3>
               </div>
-              <div className="activity-card">
+              <div className="activity-card" style={{ flex: 'none', width: '100%', margin: '0 auto' }}>
                 <div className="activity-image-wrap">
                   <img src="images/activities/paragliding.png" alt="Paragliding" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
                   <span className="activity-badge">12 Trips</span>
                 </div>
-                <h3>Paragliding</h3>
+                <h3 style={{ textAlign: 'center' }}>Paragliding</h3>
               </div>
             </div>
           </div>
