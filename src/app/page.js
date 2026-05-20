@@ -262,7 +262,7 @@ export default function Home() {
                 {/* Image Overlay Header */}
                 <div className="relative h-[220px] overflow-hidden">
                   <img
-                    src="/images/packages/north_india_circuit.jpg"
+                    src="/images/gallery/people/p1.jpeg"
                     alt="14-Day Northern India Circuit"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
@@ -416,11 +416,10 @@ export default function Home() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-2 rounded-full font-bold text-xs md:text-sm cursor-pointer border transition-all duration-300 ${
-                    activeTab === tab.id
+                  className={`px-4 py-2 rounded-full font-bold text-xs md:text-sm cursor-pointer border transition-all duration-300 ${activeTab === tab.id
                       ? 'shadow-md shadow-accent/15 scale-105'
                       : 'bg-white hover:bg-[#fcfbf9]'
-                  }`}
+                    }`}
                   style={{
                     backgroundColor: activeTab === tab.id ? 'var(--accent)' : '#ffffff',
                     color: activeTab === tab.id ? '#ffffff' : 'var(--muted)',
@@ -512,7 +511,7 @@ export default function Home() {
         </section>
 
         {/* ——— Jammu to Katra Connectivity & Transport Guide (SEO Target Keywords) ——— */}
-        <section className="section" aria-labelledby="guide-heading" style={{ padding: '4rem 1.25rem', borderTop: '1px solid var(--line)' }}>
+        <section className="section" aria-labelledby="guide-heading" style={{ padding: '1rem 1.25rem', borderTop: '1px solid var(--line)' }}>
           <div className="container max-w-[1100px] mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
@@ -526,7 +525,7 @@ export default function Home() {
                   <p className="text-muted text-[15px] leading-relaxed">
                     Plan your journey <strong>to katra</strong> seamlessly. Whether you are coming via train, flight, or driving down the highway, we provide verified information to make your road trip completely sorted.
                   </p>
-                  <button 
+                  <button
                     onClick={() => setShowRouteModal(true)}
                     className="inline-flex items-center gap-1.5 text-xs font-bold mt-1.5 hover:underline cursor-pointer"
                     style={{ color: 'var(--accent)' }}
@@ -933,7 +932,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(travelAgencySchema) }}
       />
       {showRouteModal && (
-        <div 
+        <div
           onClick={() => setShowRouteModal(false)}
           style={{
             position: 'fixed',
@@ -950,7 +949,7 @@ export default function Home() {
             padding: '1.5rem',
           }}
         >
-          <div 
+          <div
             onClick={(e) => e.stopPropagation()}
             style={{
               position: 'relative',
@@ -962,7 +961,7 @@ export default function Home() {
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
             }}
           >
-            <button 
+            <button
               onClick={() => setShowRouteModal(false)}
               style={{
                 position: 'absolute',
@@ -984,8 +983,8 @@ export default function Home() {
             </button>
             <h3 className="font-bold text-lg text-ink mb-4 pr-6">Our Official Highway Route Map</h3>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid var(--line)', height: '400px' }}>
-              <img 
-                src="/images/flyers/route_map_flyer.jpg" 
+              <img
+                src="/images/flyers/route_map_flyer.jpg"
                 alt="Katra Travels Route Map"
                 style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#f9f9f9' }}
               />
