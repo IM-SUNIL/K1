@@ -728,7 +728,7 @@ export default function Home() {
             </div>
           </div>
           <div className="scroll-row-wrap">
-            <div className="scroll-row" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
+            <div className="scroll-row" style={{ justifyContent: 'center', flexWrap: 'nowrap' }}>
               <div className="activity-card">
                 <div className="activity-image-wrap">
                   <img src="images/activities/biking.png" alt="Biking" width="280" height="280" loading="lazy" />
