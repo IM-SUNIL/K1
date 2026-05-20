@@ -728,7 +728,7 @@ export default function Home() {
             </div>
           </div>
           <div className="scroll-row-wrap">
-            <div className="scroll-row">
+            <div className="scroll-row" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
               <div className="activity-card">
                 <div className="activity-image-wrap">
                   <img src="images/activities/biking.png" alt="Biking" width="280" height="280" loading="lazy" />
@@ -752,10 +752,17 @@ export default function Home() {
               </div>
               <div className="activity-card">
                 <div className="activity-image-wrap">
-                  <img src="images/activities/dinner.png" alt="Candlelight Dinner" width="280" height="280" loading="lazy" />
-                  <span className="activity-badge">4 Trips</span>
+                  <img src="images/activities/rafting.png" alt="River Rafting" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
+                  <span className="activity-badge">5 Trips</span>
                 </div>
-                <h3>Candlelight Dinner</h3>
+                <h3>River Rafting</h3>
+              </div>
+              <div className="activity-card">
+                <div className="activity-image-wrap">
+                  <img src="images/activities/horse_riding.png" alt="Horse Riding" width="280" height="280" loading="lazy" style={{ objectFit: 'cover' }} />
+                  <span className="activity-badge">8 Trips</span>
+                </div>
+                <h3>Horse Riding</h3>
               </div>
             </div>
           </div>
