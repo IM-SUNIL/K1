@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { packages } from '@/data/packages';
 import { ExpandingCards } from '@/components/ui/expanding-cards';
 import MarqueeReviews from '@/components/ui/marquee-reviews';
+import SocialLinks, { SOCIAL_LINKS } from '@/components/SocialLinks';
 import {
   Mountain,
   Snowflake,
@@ -41,7 +42,8 @@ export default function Home() {
       "longitude": "74.927788"
     },
     "sameAs": [
-      "https://wa.me/919906130577"
+      "https://wa.me/919906130577",
+      ...SOCIAL_LINKS.map((item) => item.href)
     ],
     "priceRange": "$$",
     "areaServed": ["Katra", "Jammu & Kashmir", "Srinagar", "Kashmir", "Ladakh", "Himachal Pradesh", "Uttarakhand"],
@@ -923,6 +925,10 @@ export default function Home() {
                   <h3>Visit Us</h3>
                   <p className="method-link" style={{ textDecoration: 'none', color: 'inherit' }}>Katra, J&amp;K</p>
                 </div>
+              </div>
+              <div className="method-card" style={{ marginTop: '1.5rem' }}>
+                <h3>Follow Us</h3>
+                <SocialLinks variant="card" />
               </div>
             </div>
             <div className="home-contact-map">

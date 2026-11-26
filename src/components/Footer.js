@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SocialLinks from '@/components/SocialLinks';
 
 export default function Footer() {
   return (
@@ -36,6 +37,7 @@ export default function Footer() {
           <p><Link href="tel:9906130577">9906130577</Link></p>
           <p><Link href="mailto:katratravel@gmail.com">katratravel@gmail.com</Link></p>
           <p><Link href="https://wa.me/919906130577" target="_blank" rel="noopener noreferrer">WhatsApp</Link></p>
+          <SocialLinks variant="footer" showLabels={false} />
         </div>
       </div>
       <div className="footer-bottom">

@@ -273,6 +273,27 @@ ul {
   border-top: 1px solid var(--line);
 }
 
+.nav-drawer-social {
+  padding-top: 0.35rem;
+}
+
+.social-links--drawer {
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.social-links--drawer .social-link {
+  color: var(--ink);
+  font-size: 0.9rem;
+  padding: 0.35rem 0.25rem;
+}
+
+.social-links--drawer .social-link:hover,
+.social-links--drawer .social-link:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
 .nav-cta-desktop {
   display: none;
   align-items: center;
@@ -1666,6 +1687,52 @@ ul {
 .footer-contact-block a:hover,
 .footer-contact-block a:focus-visible {
   color: #fff;
+  outline: none;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.social-links--footer {
+  margin-top: 0.85rem;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.social-links--footer .social-link {
+  color: #b8e6d9;
+  padding: 0.25rem;
+}
+
+.social-links--footer .social-link:hover,
+.social-links--footer .social-link:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.social-links--card {
+  gap: 1rem;
+}
+
+.social-links--card .social-link {
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.social-links--card .social-link:hover,
+.social-links--card .social-link:focus-visible {
+  color: var(--coral);
   outline: none;
 }
 

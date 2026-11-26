@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { useState } from 'react';
+import SocialLinks from '@/components/SocialLinks';
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', phone: '', destination: '', message: '' });
@@ -47,6 +48,14 @@ export default function Contact() {
           <p style={{marginTop: '0.75rem', marginBottom: 0}}>
             <Link href="mailto:katratravel@gmail.com">katratravel@gmail.com</Link>
           </p>
+        </div>
+        <div className="contact-card">
+          <p className="contact-card-label">Social</p>
+          <h2 className="contact-card-title">Follow us</h2>
+          <p>See trip highlights, updates, and travel reels.</p>
+          <div style={{ marginTop: '0.85rem' }}>
+            <SocialLinks variant="card" />
+          </div>
         </div>
         <div className="contact-card">
           <p className="contact-card-label">Location</p>
