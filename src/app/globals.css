@@ -273,6 +273,27 @@ ul {
   border-top: 1px solid var(--line);
 }
 
+.nav-drawer-social {
+  padding-top: 0.35rem;
+}
+
+.social-links--drawer {
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.social-links--drawer .social-link {
+  color: var(--ink);
+  font-size: 0.9rem;
+  padding: 0.35rem 0.25rem;
+}
+
+.social-links--drawer .social-link:hover,
+.social-links--drawer .social-link:focus-visible {
+  color: var(--accent);
+  outline: none;
+}
+
 .nav-cta-desktop {
   display: none;
   align-items: center;

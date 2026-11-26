@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import SocialLinks from '@/components/SocialLinks';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,6 +75,9 @@ export default function Header() {
             <div className="nav-drawer-cta">
               <Link onClick={() => setIsOpen(false)} className="btn btn-outline btn-block" href="tel:9906130577">Call Us</Link>
               <Link onClick={() => setIsOpen(false)} className="btn btn-primary btn-block" href="https://wa.me/919906130577" target="_blank" rel="noopener noreferrer">WhatsApp us</Link>
+              <div className="nav-drawer-social">
+                <SocialLinks variant="drawer" onLinkClick={() => setIsOpen(false)} />
+              </div>
             </div>
           </div>
         </div>

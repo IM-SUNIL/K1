@@ -36,7 +36,7 @@ export const SOCIAL_LINKS = [
   },
 ];
 
-export default function SocialLinks({ variant = 'card', showLabels = true }) {
+export default function SocialLinks({ variant = 'card', showLabels = true, onLinkClick }) {
   return (
     <div className={`social-links social-links--${variant}`}>
       {SOCIAL_LINKS.map((item) => (
@@ -47,6 +47,7 @@ export default function SocialLinks({ variant = 'card', showLabels = true }) {
           rel="noopener noreferrer"
           aria-label={`Follow Katra Travels on ${item.name}`}
           className="social-link"
+          onClick={onLinkClick}
         >
           {item.icon}
           {showLabels && <span>{item.name}</span>}
